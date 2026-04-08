@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — IBF 100 Dias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:      #0A2048;
+      --navy-mid:  #0e2d5e;
+      --orange:    #F39200;
+      --white:     #FFFFFF;
+      --cold:      #F0F4FA;
+      --border:    #c8d6ea;
+      --text-sec:  #3a5080;
+      --text-mut:  #7a90b0;
+      --green:     #1a7a4a;
+      --green-bg:  #e8f5ee;
+      --red:       #b91c1c;
+      --red-bg:    #fef2f2;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--cold);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 120px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--navy);
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-logo { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+    .header-tag  { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); }
+
+    /* ===== LAYOUT ===== */
+    .page { max-width: 720px; margin: 0 auto; padding: 48px 24px 0; }
+
+    .page-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-mut); margin-bottom: 8px;
+    }
+
+    .page-title {
+      font-size: 26px; font-weight: 700; color: var(--navy);
+      letter-spacing: -0.015em; margin-bottom: 40px;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--white);
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-mut); margin-bottom: 20px;
+    }
+
+    /* ===== PHASE HEADER ===== */
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--cold);
+    }
+
+    .phase-num {
+      font-size: 28px; font-weight: 700; color: var(--border);
+      line-height: 1; flex-shrink: 0;
+    }
+
+    .phase-info-name  { font-size: 17px; font-weight: 600; color: var(--navy); }
+    .phase-info-dates { font-size: 12px; color: var(--text-sec); margin-top: 2px; }
+
+    /* ===== MILESTONE ROW ===== */
+    .milestone-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--cold);
+    }
+
+    .milestone-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .milestone-row:first-child { padding-top: 0; }
+
+    .milestone-row-name {
+      font-size: 14px; font-weight: 600; color: var(--navy);
+      flex: 1; line-height: 1.35;
+    }
+
+    .milestone-row-date {
+      font-size: 11px; color: var(--text-mut); margin-top: 2px; font-weight: 400;
+    }
+
+    /* ===== SELECT ===== */
+    select {
+      font-family: 'Sora', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--navy);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a90b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 30px;
+      flex-shrink: 0;
+      transition: border-color 0.15s;
+    }
+
+    select:focus { outline: none; border-color: var(--navy); }
+
+    select[data-status="done"]     { background-color: #EBF0FA; border-color: var(--navy); color: var(--navy); }
+    select[data-status="active"]   { background-color: #FFF5E6; border-color: var(--orange); color: var(--orange); }
+    select[data-status="upcoming"] { background-color: var(--cold); }
+
+    /* ===== UPDATES ===== */
+    .update-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--cold);
+    }
+
+    .update-row:last-child { border-bottom: none; }
+
+    .update-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange); flex-shrink: 0; margin-top: 5px;
+    }
+
+    .update-content { flex: 1; }
+    .update-date    { font-size: 11px; font-weight: 700; color: var(--text-mut); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .update-text    { font-size: 13px; color: var(--navy); line-height: 1.5; }
+
+    .btn-delete {
+      background: none; border: none; cursor: pointer;
+      font-size: 18px; color: var(--border); padding: 0 4px;
+      line-height: 1; transition: color 0.15s; flex-shrink: 0;
+    }
+
+    .btn-delete:hover { color: var(--red); }
+
+    /* Add update form */
+    .add-update-form {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--cold);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-row { display: flex; gap: 10px; }
+
+    input[type="text"], input[type="date"] {
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: var(--cold);
+      color: var(--navy);
+      border-radius: 4px;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+
+    input[type="text"]:focus, input[type="date"]:focus {
+      outline: none;
+      border-color: var(--navy);
+      background: var(--white);
+    }
+
+    input[type="date"] { width: auto; flex-shrink: 0; }
+
+    .btn-add {
+      font-family: 'Sora', sans-serif;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 10px 20px;
+      background: var(--navy); color: var(--white);
+      border: none; border-radius: 4px; cursor: pointer;
+      flex-shrink: 0; transition: opacity 0.15s;
+    }
+
+    .btn-add:hover { opacity: 0.85; }
+
+    /* ===== SAVE BAR ===== */
+    .save-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--navy);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 200;
+    }
+
+    .save-hint { font-size: 13px; color: rgba(240,244,250,0.6); }
+
+    .btn-save {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 12px 32px;
+      background: var(--orange); color: var(--white);
+      border: none; border-radius: 4px; cursor: pointer;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-save:hover    { opacity: 0.9; }
+    .btn-save:disabled { opacity: 0.5; cursor: default; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 72px; right: 24px;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      z-index: 300;
+    }
+
+    .toast.show    { opacity: 1; transform: translateY(0); }
+    .toast-ok      { background: var(--green-bg); color: var(--green); }
+    .toast-err     { background: var(--red-bg); color: var(--red); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      header { padding: 0 16px; }
+      .page  { padding: 32px 16px 0; }
+      .card  { padding: 20px; }
+      .form-row { flex-direction: column; }
+      input[type="date"] { width: 100%; }
+      .save-bar { padding: 14px 16px; }
+      .save-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="header-logo">IBF 100 Dias</span>
+    <span class="header-tag">— Admin</span>
+  </header>
+
+  <div class="page">
+    <p class="page-eyebrow">— PAINEL DE EDIÇÃO</p>
+    <h1 class="page-title">Atualizar Progresso</h1>
+    <div id="content"></div>
+  </div>
+
+  <div class="save-bar">
+    <span class="save-hint">Alterações ficam pendentes até você salvar.</span>
+    <button class="btn-save" id="btn-save" onclick="save()">Salvar alterações</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    var data = null;
+
+    /* ===== LOAD ===== */
+    async function load() {
+      var res = await fetch('./data.json');
+      data = await res.json();
+      render();
+    }
+
+    /* ===== RENDER ===== */
+    function render() {
+      var html = '';
+
+      /* Phases + Milestones */
+      data.phases.forEach(function(phase) {
+        html += '<div class="card">';
+        html += '<div class="phase-header">';
+        html += '<div class="phase-num">' + phase.number + '</div>';
+        html += '<div><p class="phase-info-name">' + phase.name + '</p>';
+        html += '<p class="phase-info-dates">' + phase.period + ' · ' + phase.dates + '</p></div>';
+        html += '</div>';
+
+        phase.milestones.forEach(function(m) {
+          html += '<div class="milestone-row">';
+          html += '<div>';
+          html += '<p class="milestone-row-name">' + m.name + '</p>';
+          html += '<p class="milestone-row-date">' + m.due_date + '</p>';
+          html += '</div>';
+          html += '<select data-phase="' + phase.id + '" data-milestone="' + m.id + '" data-status="' + m.status + '" onchange="updateStatus(this)">';
+          html += '<option value="upcoming"' + (m.status === 'upcoming' ? ' selected' : '') + '>A iniciar</option>';
+          html += '<option value="active"'  + (m.status === 'active'   ? ' selected' : '') + '>Em andamento</option>';
+          html += '<option value="done"'    + (m.status === 'done'     ? ' selected' : '') + '>Concluído</option>';
+          html += '</select>';
+          html += '</div>';
+        });
+
+        html += '</div>'; /* card */
+      });
+
+      /* Updates */
+      html += '<div class="card">';
+      html += '<p class="card-title">— Últimas movimentações</p>';
+      html += '<div id="updates-list">';
+      html += renderUpdates();
+      html += '</div>';
+      html += '<div class="add-update-form">';
+      html += '<p style="font-size:13px;font-weight:600;color:var(--text-sec)">Adicionar atualização</p>';
+      html += '<div class="form-row">';
+      html += '<input type="date" id="new-date" value="' + todayISO() + '">';
+      html += '<input type="text" id="new-text" placeholder="Descreva o que aconteceu...">';
+      html += '<button class="btn-add" onclick="addUpdate()">Adicionar</button>';
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    function renderUpdates() {
+      if (!data.updates.length) return '<p style="font-size:13px;color:var(--text-mut);padding:8px 0">Nenhuma atualização ainda.</p>';
+      return data.updates.map(function(u, i) {
+        return '<div class="update-row">' +
+          '<div class="update-dot"></div>' +
+          '<div class="update-content">' +
+          '<p class="update-date">' + u.date + '</p>' +
+          '<p class="update-text">' + u.text + '</p>' +
+          '</div>' +
+          '<button class="btn-delete" onclick="deleteUpdate(' + i + ')" title="Remover">×</button>' +
+          '</div>';
+      }).join('');
+    }
+
+    /* ===== HANDLERS ===== */
+
+    function updateStatus(el) {
+      var phaseId     = parseInt(el.dataset.phase);
+      var milestoneId = el.dataset.milestone;
+      var newStatus   = el.value;
+
+      var phase = data.phases.find(function(p) { return p.id === phaseId; });
+      var m     = phase.milestones.find(function(m) { return m.id === milestoneId; });
+      m.status  = newStatus;
+
+      /* also update phase status */
+      var statuses = phase.milestones.map(function(m) { return m.status; });
+      if (statuses.every(function(s) { return s === 'done'; })) {
+        phase.status = 'done';
+      } else if (statuses.some(function(s) { return s === 'active' || s === 'done'; })) {
+        phase.status = 'active';
+      } else {
+        phase.status = 'upcoming';
+      }
+
+      el.dataset.status = newStatus;
+    }
+
+    function addUpdate() {
+      var dateEl = document.getElementById('new-date');
+      var textEl = document.getElementById('new-text');
+      var text   = textEl.value.trim();
+
+      if (!text) { textEl.focus(); return; }
+
+      var d   = new Date(dateEl.value + 'T12:00:00');
+      var fmt = d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
+                 .replace(/ de /g, ' ').replace('.', '');
+
+      data.updates.unshift({ date: fmt, text: text });
+      textEl.value = '';
+      document.getElementById('updates-list').innerHTML = renderUpdates();
+    }
+
+    function deleteUpdate(i) {
+      data.updates.splice(i, 1);
+      document.getElementById('updates-list').innerHTML = renderUpdates();
+    }
+
+    /* ===== SAVE ===== */
+
+    async function save() {
+      var btn = document.getElementById('btn-save');
+      btn.disabled = true;
+      btn.textContent = 'Salvando...';
+
+      try {
+        var res = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data, null, 2)
+        });
+        var json = await res.json();
+        if (json.ok) {
+          showToast('Salvo com sucesso.', 'ok');
+        } else {
+          showToast('Erro: ' + json.error, 'err');
+        }
+      } catch (e) {
+        showToast('Erro ao salvar. Verifique o servidor.', 'err');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Salvar alterações';
+    }
+
+    /* ===== UTILS ===== */
+
+    function todayISO() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function showToast(msg, type) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast toast-' + type;
+      void t.offsetWidth;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 3000);
+    }
+
+    load();
+  </script>
+</body>
+</html>
