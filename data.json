@@ -1,0 +1,173 @@
+{
+  "plan": {
+    "title": "Plano de 100 Dias",
+    "responsible": "Edu de Barros",
+    "role": "Diretoria de Receita",
+    "organization": "IBF",
+    "start_date": "2026-04-08",
+    "end_date": "2026-07-17",
+    "total_days": 100
+  },
+  "phases": [
+    {
+      "id": 1,
+      "number": "01",
+      "name": "Diagnóstico",
+      "period": "Dias 1–30",
+      "dates": "8 abr – 7 mai 2026",
+      "status": "active",
+      "milestones": [
+        {
+          "id": "m1-1",
+          "name": "Kickoff com o time",
+          "description": "Reunião de apresentação oficial com a equipe IBF.",
+          "due_date": "8 abr",
+          "status": "done",
+          "artifact": null
+        },
+        {
+          "id": "m1-2",
+          "name": "Reuniões individuais com o time",
+          "description": "Paula Z., Joel, Gustavo concluídos. Simone pendente.",
+          "due_date": "8–14 abr",
+          "status": "active",
+          "artifact": null
+        },
+        {
+          "id": "m1-3",
+          "name": "Mapa de perfis do time",
+          "description": "Fichas individuais preenchidas. Decisões de posicionamento.",
+          "due_date": "14 abr",
+          "status": "active",
+          "artifact": null
+        },
+        {
+          "id": "m1-4",
+          "name": "Comunicados internos enviados",
+          "description": "Comunicado da Sílvia para IBFs Locais + comunicado para IBF Central.",
+          "due_date": "11 abr",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m1-5",
+          "name": "Diagnóstico da operação comercial",
+          "description": "Pipeline atual auditado. O que existe em marketing, vendas e captação.",
+          "due_date": "30 abr",
+          "status": "upcoming",
+          "artifact": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": "02",
+      "name": "Estrutura",
+      "period": "Dias 31–60",
+      "dates": "8 mai – 6 jun 2026",
+      "status": "upcoming",
+      "milestones": [
+        {
+          "id": "m2-1",
+          "name": "Organograma da Diretoria de Receita",
+          "description": "Pessoas posicionadas. Responsabilidades formalizadas.",
+          "due_date": "Mai 2026",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m2-2",
+          "name": "CRM implementado",
+          "description": "Pipeline B2B, B2C e captação configurados. Time operando.",
+          "due_date": "15 mai",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m2-3",
+          "name": "Sistema de pagamento unificado",
+          "description": "Plataforma centralizada. Repasse automático para locais.",
+          "due_date": "15 mai",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m2-4",
+          "name": "Metas de receita 2026 definidas",
+          "description": "Por produto e cidade. Aprovadas pela Diretoria.",
+          "due_date": "20 mai",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m2-5",
+          "name": "1º ritual com IBFs Locais",
+          "description": "Apresentação, alinhamento e nova dinâmica Central ↔ Locais.",
+          "due_date": "30 abr",
+          "status": "upcoming",
+          "artifact": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "number": "03",
+      "name": "Execução",
+      "period": "Dias 61–100",
+      "dates": "7 jun – 17 jul 2026",
+      "status": "upcoming",
+      "milestones": [
+        {
+          "id": "m3-1",
+          "name": "Funil de vendas rodando",
+          "description": "Leads entrando, follow-up ativo, conversão rastreada.",
+          "due_date": "Jun–Jul 2026",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m3-2",
+          "name": "DPP B2B: 5+ novas escolas em negociação",
+          "description": "Pipeline ativo com escolas. Propostas enviadas.",
+          "due_date": "Jun–Jul 2026",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m3-3",
+          "name": "Reajuste de preços implementado",
+          "description": "Novos contratos no novo preço. IBFs Locais comunicados.",
+          "due_date": "Mai 2026",
+          "status": "upcoming",
+          "artifact": null
+        },
+        {
+          "id": "m3-4",
+          "name": "1º dashboard de receita apresentado",
+          "description": "Receita real vs. meta. Pipeline. Conversão por produto.",
+          "due_date": "15 jul 2026",
+          "status": "upcoming",
+          "artifact": null
+        }
+      ]
+    }
+  ],
+  "updates": [
+    {
+      "date": "8 abr 2026",
+      "text": "Kickoff oficial com o time IBF realizado."
+    },
+    {
+      "date": "8 abr 2026",
+      "text": "Reuniões individuais iniciadas: Paula Z., Joel e Gustavo concluídas."
+    },
+    {
+      "date": "8 abr 2026",
+      "text": "Fichas de perfil do time abertas no ClickUp."
+    },
+    {
+      "date": "8 abr 2026",
+      "text": "Organograma da Diretoria de Receita em construção."
+    }
+  ]
+}

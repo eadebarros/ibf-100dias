@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBF 100 Dias — Diretoria de Receita</title>
+  <meta name="description" content="Painel de acompanhamento do Plano de 100 Dias de Edu de Barros, Diretoria de Receita IBF.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --navy:         #0A2048;
+      --navy-mid:     #0e2d5e;
+      --navy-dim:     rgba(14, 45, 94, 0.5);
+      --ibf-blue:     #1240A0;
+      --orange:       #F39200;
+      --white:        #FFFFFF;
+      --cold-neutral: #F0F4FA;
+      --border-light: #c8d6ea;
+      --text-on-dark: rgba(240, 244, 250, 0.75);
+      --text-secondary: #3a5080;
+      --text-muted:   #7a90b0;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== TYPOGRAPHY UTILITIES ===== */
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+
+    @keyframes progress-in {
+      from { width: 0%; }
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-org {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-on-dark);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--navy);
+      padding: 64px 0 72px;
+    }
+
+    .hero-eyebrow {
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-on-dark);
+      margin-bottom: 48px;
+    }
+
+    /* Progress Bar */
+    .progress-wrap {
+      margin-bottom: 12px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 2px;
+      background: var(--navy-mid);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--white);
+      animation: progress-in 0.8s ease forwards;
+    }
+
+    .progress-meta {
+      font-size: 13px;
+      color: var(--text-on-dark);
+    }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .stat-card {
+      background: var(--navy-dim);
+      padding: 20px 18px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-on-dark);
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-on-dark);
+      margin-top: 6px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .status-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== PHASES SECTION ===== */
+    .phases-section {
+      background: var(--cold-neutral);
+      padding: 80px 0;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.015em;
+    }
+
+    /* Phase Block */
+    .phase-block {
+      margin-bottom: 72px;
+    }
+
+    .phase-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .phase-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--border-light);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .phase-info {
+      flex: 1;
+    }
+
+    .phase-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .phase-period {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    .badge-done {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .badge-active {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .badge-upcoming {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+    }
+
+    /* Milestone List */
+    .milestone-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .milestone-item {
+      display: flex;
+      gap: 16px;
+    }
+
+    /* Timeline column */
+    .milestone-col-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 18px;
+      flex-shrink: 0;
+      padding-top: 18px;
+    }
+
+    .milestone-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-done     { background: var(--navy); }
+    .dot-active   { background: var(--orange); animation: pulse 2s ease-in-out infinite; }
+    .dot-upcoming { background: transparent; border: 1.5px solid var(--border-light); }
+
+    .milestone-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border-light);
+      margin-top: 4px;
+      min-height: 24px;
+    }
+
+    /* Milestone card */
+    .milestone-card {
+      flex: 1;
+      background: var(--white);
+      padding: 16px 20px;
+      margin-bottom: 8px;
+    }
+
+    .card-active   { border-left: 3px solid var(--orange); }
+    .card-done     { border-left: 3px solid var(--navy); }
+    .card-upcoming { opacity: 0.65; }
+
+    .milestone-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .milestone-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .milestone-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .milestone-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Artifact card */
+    .artifact-card {
+      background: var(--cold-neutral);
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+
+    .artifact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .artifact-type {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .artifact-date {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .artifact-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .artifact-link {
+      font-size: 13px;
+      color: var(--ibf-blue);
+      text-decoration: none;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .artifact-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== UPDATES SECTION ===== */
+    .updates-section {
+      background: var(--navy);
+      padding: 80px 0;
+    }
+
+    .updates-eyebrow {
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .updates-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.015em;
+      margin-bottom: 48px;
+    }
+
+    .feed-timeline {
+      position: relative;
+      padding-left: 32px;
+      border-left: 1px solid var(--navy-mid);
+    }
+
+    .feed-item {
+      position: relative;
+      padding-bottom: 36px;
+    }
+
+    .feed-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .feed-dot {
+      position: absolute;
+      left: -40px;
+      top: 3px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: 3px solid var(--navy);
+    }
+
+    .feed-dot-old {
+      background: var(--text-secondary);
+    }
+
+    .feed-date {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 5px;
+    }
+
+    .feed-date-old {
+      color: var(--text-secondary);
+    }
+
+    .feed-text {
+      font-size: 14px;
+      color: rgba(240, 244, 250, 0.85);
+      line-height: 1.55;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-mid);
+      padding: 28px 0;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: rgba(240, 244, 250, 0.45);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      nav {
+        padding: 0 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .phase-number {
+        font-size: 32px;
+      }
+
+      .phase-header {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <nav>
+      <span class="nav-logo">IBF 100 Dias</span>
+      <span class="nav-org">Diretoria de Receita</span>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <p class="label hero-eyebrow">— IBF · DIRETORIA DE RECEITA</p>
+      <h1 id="hero-title">Plano de 100 Dias</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Edu de Barros · 8 abr → 17 jul 2026</p>
+
+      <div class="progress-wrap">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <p class="progress-meta" id="progress-meta">Carregando...</p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <p class="stat-label">Progresso Geral</p>
+          <p class="stat-value" id="progress-pct">—</p>
+          <p class="stat-sub" id="day-counter">Dia — de 100</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Milestones</p>
+          <p class="stat-value" id="milestone-counter">—</p>
+          <p class="stat-sub" id="next-milestone">—</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Status</p>
+          <div class="status-indicator" style="margin-top: 10px;">
+            <span class="status-dot"></span>
+            <span class="status-text">Em Execução</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHASES ===== -->
+  <section class="phases-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="label section-eyebrow">— JORNADA ESTRATÉGICA</p>
+        <h2 class="section-title">Cronograma de Entregas</h2>
+      </div>
+      <div id="phases-container"></div>
+    </div>
+  </section>
+
+  <!-- ===== UPDATES ===== -->
+  <section class="updates-section">
+    <div class="container">
+      <p class="label updates-eyebrow">— ÚLTIMAS MOVIMENTAÇÕES</p>
+      <h2 class="updates-title">Atividades Recentes</h2>
+      <div class="feed-timeline" id="updates-container"></div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p class="footer-text" id="footer-text">Edu de Barros · Diretoria de Receita · IBF 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== BUSINESS LOGIC ===== */
+
+    function getCurrentDay(startDate) {
+      var start = new Date(startDate);
+      var today = new Date();
+      var diff = Math.floor((today - start) / (1000 * 60 * 60 * 24)) + 1;
+      return Math.min(Math.max(diff, 1), 100);
+    }
+
+    function getOverallProgress(phases) {
+      var allMilestones = phases.reduce(function(acc, p) { return acc.concat(p.milestones); }, []);
+      var done = allMilestones.filter(function(m) { return m.status === 'done'; }).length;
+      return {
+        done: done,
+        total: allMilestones.length,
+        pct: Math.round((done / allMilestones.length) * 100)
+      };
+    }
+
+    /* ===== RENDERERS ===== */
+
+    function badgeClass(status) {
+      return 'badge badge-' + status;
+    }
+
+    function badgeText(status) {
+      if (status === 'done')     return 'Concluído';
+      if (status === 'active')   return 'Em andamento';
+      return 'A iniciar';
+    }
+
+    function renderArtifact(artifact) {
+      if (!artifact) return '';
+      return '<div class="artifact-card">' +
+        '<div class="artifact-header">' +
+          '<span class="artifact-type">' + artifact.type + '</span>' +
+          (artifact.date ? '<span class="artifact-date">' + artifact.date + '</span>' : '') +
+        '</div>' +
+        '<p class="artifact-name">' + artifact.name + '</p>' +
+        (artifact.link ? '<a href="' + artifact.link + '" target="_blank" rel="noopener" class="artifact-link">→ Ver documento</a>' : '') +
+      '</div>';
+    }
+
+    function renderMilestone(milestone, isLast) {
+      var dotClass = 'milestone-dot dot-' + milestone.status;
+      var cardClass = 'milestone-card card-' + milestone.status;
+      return '<div class="milestone-item">' +
+        '<div class="milestone-col-left">' +
+          '<div class="' + dotClass + '"></div>' +
+          (isLast ? '' : '<div class="milestone-line"></div>') +
+        '</div>' +
+        '<div class="' + cardClass + '">' +
+          '<p class="milestone-name">' + milestone.name + '</p>' +
+          '<p class="milestone-desc">' + milestone.description + '</p>' +
+          '<div class="milestone-meta">' +
+            '<span class="milestone-date">' + milestone.due_date + '</span>' +
+            '<span class="' + badgeClass(milestone.status) + '">' + badgeText(milestone.status) + '</span>' +
+          '</div>' +
+          renderArtifact(milestone.artifact) +
+        '</div>' +
+      '</div>';
+    }
+
+    function renderPhase(phase) {
+      var milestonesHTML = phase.milestones.map(function(m, i) {
+        return renderMilestone(m, i === phase.milestones.length - 1);
+      }).join('');
+
+      return '<div class="phase-block">' +
+        '<div class="phase-header">' +
+          '<div class="phase-number">' + phase.number + '</div>' +
+          '<div class="phase-info">' +
+            '<p class="phase-name">' + phase.name + '</p>' +
+            '<p class="phase-period">' + phase.period + ' · ' + phase.dates + '</p>' +
+          '</div>' +
+          '<span class="' + badgeClass(phase.status) + '">' + badgeText(phase.status) + '</span>' +
+        '</div>' +
+        '<div class="milestone-list">' + milestonesHTML + '</div>' +
+      '</div>';
+    }
+
+    function renderUpdates(updates) {
+      return updates.slice(0, 5).map(function(item, i) {
+        var dotExtra  = i > 0 ? ' feed-dot-old' : '';
+        var dateExtra = i > 0 ? ' feed-date-old' : '';
+        return '<div class="feed-item">' +
+          '<div class="feed-dot' + dotExtra + '"></div>' +
+          '<p class="feed-date' + dateExtra + '">' + item.date + '</p>' +
+          '<p class="feed-text">' + item.text + '</p>' +
+        '</div>';
+      }).join('');
+    }
+
+    /* ===== INIT ===== */
+
+    function formatDate(dateStr) {
+      var d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
+               .replace(/\bde\b/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    async function init() {
+      try {
+        var response = await fetch('./data.json');
+        var data = await response.json();
+        var plan = data.plan;
+        var phases = data.phases;
+        var updates = data.updates;
+
+        var currentDay = getCurrentDay(plan.start_date);
+        var progress   = getOverallProgress(phases);
+        var dayPct     = Math.round((currentDay / plan.total_days) * 100);
+
+        /* Hero */
+        document.getElementById('hero-title').textContent    = plan.title;
+        document.getElementById('hero-subtitle').textContent =
+          plan.responsible + ' · ' + formatDate(plan.start_date) + ' → ' + formatDate(plan.end_date);
+
+        /* Progress bar */
+        document.getElementById('progress-fill').style.width = dayPct + '%';
+        document.getElementById('progress-meta').textContent =
+          'Dia ' + currentDay + ' de ' + plan.total_days + ' · ' + dayPct + '% do período decorrido';
+
+        /* Stats */
+        document.getElementById('progress-pct').textContent    = progress.pct + '%';
+        document.getElementById('day-counter').textContent     = 'Dia ' + currentDay + ' de ' + plan.total_days;
+        document.getElementById('milestone-counter').textContent = progress.done + '/' + progress.total;
+
+        var allMilestones = phases.reduce(function(a, p) { return a.concat(p.milestones); }, []);
+        var next = allMilestones.find(function(m) { return m.status === 'active' || m.status === 'upcoming'; });
+        document.getElementById('next-milestone').textContent = next ? 'Próximo: ' + next.name : 'Todos concluídos';
+
+        /* Phases */
+        document.getElementById('phases-container').innerHTML = phases.map(renderPhase).join('');
+
+        /* Updates */
+        document.getElementById('updates-container').innerHTML = renderUpdates(updates);
+
+        /* Footer */
+        document.getElementById('footer-text').textContent =
+          plan.responsible + ' · ' + plan.role + ' · ' + plan.organization + ' ' +
+          new Date(plan.end_date + 'T00:00:00').getFullYear();
+
+      } catch (err) {
+        console.error('Erro ao carregar dados:', err);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

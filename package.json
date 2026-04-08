@@ -1,0 +1,11 @@
+{
+  "name": "ibf-100dias",
+  "version": "1.0.0",
+  "description": "IBF 100 Dias — Painel de Progresso · Diretoria de Receita",
+  "scripts": {
+    "start": "serve . -p ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
