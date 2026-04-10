@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBF — Acesso Restrito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:         #0A2048;
+      --ibf-blue:     #1240A0;
+      --orange:       #F39200;
+      --white:        #FFFFFF;
+      --cold-neutral: #F0F4FA;
+      --border:       #c8d6ea;
+      --text-muted:   #7a90b0;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      background: var(--white);
+      width: 100%;
+      max-width: 400px;
+      padding: 48px 40px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      height: 48px;
+      border: 1.5px solid var(--border);
+      background: var(--cold-neutral);
+      padding: 0 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input[type="password"]:focus {
+      border-color: var(--ibf-blue);
+      background: var(--white);
+    }
+
+    .error-msg {
+      font-size: 12px;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .error-msg.visible { display: block; }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      height: 48px;
+      background: var(--ibf-blue);
+      color: var(--white);
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button:hover { background: var(--navy); }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="eyebrow">— IBF · Diretoria de Receita</p>
+    <h1>100 Dias</h1>
+    <p class="subtitle">Painel de acompanhamento · Acesso restrito</p>
+
+    <form method="POST" action="/api/login">
+      <label for="password">Senha de acesso</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="••••••••"
+        autocomplete="current-password"
+        autofocus
+      >
+      <p class="error-msg" id="error-msg">Senha incorreta. Tente novamente.</p>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="footer">Instituto Bom Futuro</div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.get('error')) {
+      document.getElementById('error-msg').classList.add('visible');
+      document.getElementById('password').focus();
+    }
+  </script>
+</body>
+</html>
