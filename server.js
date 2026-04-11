@@ -6,9 +6,21 @@ const crypto  = require('crypto');
 
 const app    = express();
 const PORT   = process.env.PORT || 3000;
-const DATA   = path.join(__dirname, 'data.json');
 const PASS   = process.env.SITE_PASSWORD || 'ibf2025';
 const SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
+
+// DATA_DIR aponta para o volume persistente no Railway.
+// Em dev (sem a env var), usa o próprio diretório do projeto.
+const DATA_DIR  = process.env.DATA_DIR || __dirname;
+const DATA_PATH = path.join(DATA_DIR, 'data.json');
+const SEED_PATH = path.join(__dirname, 'data.json'); // arquivo bundled no repo
+
+// Primeiro deploy: se o volume estiver vazio, copia o data.json do repo como seed.
+if (DATA_DIR !== __dirname && !fs.existsSync(DATA_PATH)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  fs.copyFileSync(SEED_PATH, DATA_PATH);
+  console.log('Volume vazio — seed copiado para ' + DATA_PATH);
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -52,11 +64,16 @@ app.use((req, res, next) => {
 
 // ===== ROTAS PROTEGIDAS =====
 
+// Serve o data.json do volume (sobrescreve o arquivo estático do repo)
+app.get('/data.json', (req, res) => {
+  res.sendFile(DATA_PATH);
+});
+
 app.use(express.static(__dirname));
 
 app.post('/api/save', (req, res) => {
   try {
-    fs.writeFileSync(DATA, JSON.stringify(req.body, null, 2));
+    fs.writeFileSync(DATA_PATH, JSON.stringify(req.body, null, 2));
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
@@ -64,5 +81,5 @@ app.post('/api/save', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('IBF 100 Dias rodando em http://localhost:' + PORT);
+  console.log('IBF 100 Dias · data em: ' + DATA_PATH);
 });
