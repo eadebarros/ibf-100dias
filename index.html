@@ -489,6 +489,320 @@
       line-height: 1.55;
     }
 
+    /* ===== ORGANOGRAMA ===== */
+    .orgchart-section {
+      background: var(--white);
+      padding: 80px 0;
+    }
+
+    /* --- Árvore desktop --- */
+    .oc-tree-wrap {
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .oc-tree,
+    .oc-tree-children {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .oc-tree-item {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Linha vertical que une pai → filhos */
+    .oc-tree-item > .oc-tree-children {
+      padding-left: 32px;
+      border-left: 1px solid var(--border-light);
+      margin-left: 20px;
+      margin-top: 0;
+      gap: 0;
+    }
+
+    /* Linha horizontal antes de cada nó filho */
+    .oc-tree-item > .oc-tree-children > .oc-tree-item > .oc-node-wrap::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--border-light);
+      vertical-align: middle;
+      margin-right: 0;
+      flex-shrink: 0;
+    }
+
+    .oc-node-wrap {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 0;
+    }
+
+    .oc-tree-item > .oc-tree-children > .oc-tree-item > .oc-node-wrap {
+      align-items: center;
+    }
+
+    /* Nó */
+    .oc-node {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1.5px solid var(--border-light);
+      cursor: pointer;
+      user-select: none;
+      min-width: 200px;
+      max-width: 240px;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .oc-node:focus-visible {
+      border-color: var(--ibf-blue);
+    }
+
+    .oc-node--confirmed {
+      border-style: solid;
+    }
+
+    .oc-node--evaluation {
+      border-style: dashed;
+      border-color: var(--orange);
+    }
+
+    .oc-node--open {
+      border-style: dashed;
+      border-color: var(--border-light);
+      background: var(--cold-neutral);
+    }
+
+    .oc-node-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .oc-node-name--open {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .oc-node-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Badges */
+    .oc-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 7px;
+      white-space: nowrap;
+    }
+
+    .oc-badge--confirmed {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .oc-badge--evaluation {
+      background: transparent;
+      color: var(--orange);
+      border: 1px dashed var(--orange);
+    }
+
+    .oc-badge--open {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px dashed var(--border-light);
+    }
+
+    /* Card de detalhes (tooltip) */
+    .oc-card {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      z-index: 200;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 4px 16px rgba(10, 32, 72, 0.10);
+      padding: 16px 18px;
+      width: 280px;
+      animation: oc-fade 0.15s ease;
+    }
+
+    @keyframes oc-fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .oc-node[aria-expanded="true"] .oc-card {
+      display: block;
+    }
+
+    .oc-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .oc-card-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .oc-card-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .oc-card-reports {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .oc-card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .oc-card-list li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .oc-card-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 11px;
+      top: 1px;
+    }
+
+    /* --- Lista mobile accordion --- */
+    .oc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .oc-list-item {
+      border: 1px solid var(--border-light);
+    }
+
+    .oc-list-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      text-align: left;
+    }
+
+    .oc-list-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .oc-list-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .oc-list-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .oc-list-chevron {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .oc-list-body {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--cold-neutral);
+    }
+
+    .oc-list-reports {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin: 12px 0 8px;
+    }
+
+    .oc-list-resp {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .oc-list-resp li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .oc-list-resp li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 11px;
+      top: 1px;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: var(--navy);
@@ -585,6 +899,17 @@
         <h2 class="section-title">Cronograma de Entregas</h2>
       </div>
       <div id="phases-container"></div>
+    </div>
+  </section>
+
+  <!-- ===== ORGANOGRAMA ===== -->
+  <section class="orgchart-section" id="orgchart-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="label section-eyebrow">— ESTRUTURA DA EQUIPE</p>
+        <h2 class="section-title">Diretoria de Receita</h2>
+      </div>
+      <div class="oc-body"></div>
     </div>
   </section>
 
@@ -755,5 +1080,6 @@
 
     init();
   </script>
+  <script src="./orgchart.js"></script>
 </body>
 </html>

@@ -1,0 +1,102 @@
+{
+  "root": {
+    "id": "edu",
+    "name": "Edu de Barros",
+    "role": "Diretor de Receita",
+    "reportsTo": "Diretoria IBF",
+    "status": "confirmed",
+    "responsibilities": [
+      "Toda a receita do IBF — marketing, vendas e captação",
+      "Meta consolidada mensal",
+      "Integração entre as frentes",
+      "Reporte à Diretoria"
+    ],
+    "children": [
+      {
+        "id": "joel",
+        "name": "Joel",
+        "role": "Gerente de Marketing",
+        "reportsTo": "Edu de Barros",
+        "status": "confirmed",
+        "responsibilities": [
+          "Processos e operação de marketing",
+          "Calendário editorial",
+          "Coordenação da equipe criativa",
+          "Padrão de marca e comunicação"
+        ],
+        "children": [
+          {
+            "id": "gustavo",
+            "name": "Gustavo",
+            "role": "Especialista de Funis & Performance",
+            "reportsTo": "Joel",
+            "status": "confirmed",
+            "responsibilities": [
+              "Estruturação e otimização de funis por produto",
+              "Tráfego pago e direct response",
+              "Automações e fluxos de e-mail",
+              "CRO — otimização de conversão"
+            ],
+            "children": []
+          },
+          {
+            "id": "mateus",
+            "name": "Mateus",
+            "role": "Suporte de Marketing & Operações",
+            "reportsTo": "Joel",
+            "status": "evaluation",
+            "responsibilities": [
+              "Prospecção outbound de escolas",
+              "Organização de dados e listas",
+              "Apoio em copy e estratégia",
+              "Suporte operacional ao Gustavo"
+            ],
+            "children": []
+          },
+          {
+            "id": "paulaz",
+            "name": "Paula Z.",
+            "role": "Coord. de Conteúdo",
+            "reportsTo": "Joel",
+            "status": "confirmed",
+            "responsibilities": [
+              "Produção de conteúdo para Instagram",
+              "Copy e identidade verbal",
+              "Pauta editorial",
+              "Alinhamento com estratégia de funis"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "simone",
+        "name": "Simone",
+        "role": "Gerente de Vendas",
+        "reportsTo": "Edu de Barros",
+        "status": "confirmed",
+        "responsibilities": [
+          "Pipeline DPP B2B com escolas",
+          "Venda consultiva e follow-up",
+          "Gestão do CRM de vendas",
+          "Estratégia e execução de eventos comerciais"
+        ],
+        "children": [
+          {
+            "id": "sdr",
+            "name": "SDR",
+            "role": "Sales Development Representative",
+            "reportsTo": "Simone",
+            "status": "open",
+            "responsibilities": [
+              "Prospecção e qualificação de leads",
+              "Primeiro contato com prospects",
+              "Cadências de outbound"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}
