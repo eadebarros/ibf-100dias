@@ -1,65 +1,56 @@
-# IBF 100 Dias — Como atualizar o site
+# IBF 100 Dias — Como atualizar
 
-## O único arquivo que você edita
-`data.json` — está na raiz do projeto. O site lê esse arquivo automaticamente.
-
----
-
-## Como atualizar o status de um milestone
-
-1. Abra `data.json`
-2. Encontre o milestone pelo campo `"name"`
-3. Altere o campo `"status"`:
-   - `"upcoming"` → ainda não iniciado
-   - `"active"` → em andamento
-   - `"done"` → concluído
-4. Salve o arquivo
-5. Commit + push no GitHub → Railway reimplanta em ~1 minuto
+## Acesso ao admin
+URL: `[seu-dominio]/admin`  
+Senha: definida na variável `ADMIN_PASSWORD` do Railway (padrão local: `ibf2026`)
 
 ---
 
-## Como adicionar uma atualização no feed
+## O que você pode editar no admin
 
-1. Abra `data.json`
-2. Vá para o array `"updates"`
-3. Adicione um novo objeto **no início** do array:
-```json
-{
-  "date": "15 abr 2026",
-  "text": "Descrição do que aconteceu."
-}
-```
-4. Push → Railway reimplanta
+- Status de cada milestone (A iniciar · Em andamento · Concluído)
+- Conteúdo rico de cada milestone (cole do ClickUp em Markdown)
+- O que está por vir em milestones futuros
+- Feed de atualizações recentes
+- Artefatos entregues (documento, organograma, apresentação, dashboard)
 
 ---
 
-## Como adicionar um artefato a um milestone
+## Campos de conteúdo
 
-1. Encontre o milestone no `data.json`
-2. Substitua `"artifact": null` por:
-```json
-"artifact": {
-  "type": "DOCUMENTO",
-  "name": "Nome do artefato",
-  "date": "15 abr 2026",
-  "link": "https://link-opcional.com"
-}
-```
+**O que foi feito** (`content`): aparece quando o milestone está Em andamento ou Concluído.  
+Cole o conteúdo do ClickUp diretamente — aceita Markdown (títulos com `##`, listas com `-`, negrito com `**`).
 
-Tipos válidos: `DOCUMENTO` · `ORGANOGRAMA` · `APRESENTAÇÃO` · `DASHBOARD`
-
-Se não houver link público, omita o campo `"link"` ou deixe `null`.
+**O que está por vir** (`expected_outcome`): aparece quando o milestone está A iniciar ou Em andamento.  
+Descreva o que a Diretoria pode esperar desta entrega.
 
 ---
 
-## Fluxo de deploy
+## Fluxo de atualização
 
-```
-Edita data.json → git add data.json → git commit -m "update" → git push → Railway reimplanta
-```
+1. Acesse `/admin`
+2. Edite os campos necessários
+3. Clique em **Salvar tudo**
+4. As mudanças aparecem imediatamente no site público
 
-O Railway está conectado ao repositório GitHub e faz deploy automático a cada push.
+Não é necessário fazer push no GitHub para atualizar conteúdo.
 
 ---
 
-*IBF 100 Dias · Edu de Barros · Diretoria de Receita · 2026*
+## Variáveis de ambiente no Railway
+
+| Variável | Descrição |
+|---|---|
+| `ADMIN_PASSWORD` | Senha de acesso ao admin |
+| `DATA_DIR` | Path do Volume persistente (ex: `/data`) |
+
+---
+
+## Deploy
+
+O Railway está conectado ao GitHub e faz deploy automático a cada push.  
+Conteúdo editado via admin é salvo no Volume persistente — **não é sobrescrito** por novos deploys.
+
+---
+
+*IBF 100 Dias · v2 · Edu de Barros · Diretoria de Receita · 2026*

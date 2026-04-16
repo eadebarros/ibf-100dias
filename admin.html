@@ -6,455 +6,650 @@
   <title>Admin — IBF 100 Dias</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --navy:      #0A2048;
-      --navy-mid:  #0e2d5e;
-      --orange:    #F39200;
-      --white:     #FFFFFF;
-      --cold:      #F0F4FA;
-      --border:    #c8d6ea;
-      --text-sec:  #3a5080;
-      --text-mut:  #7a90b0;
-      --green:     #1a7a4a;
-      --green-bg:  #e8f5ee;
-      --red:       #b91c1c;
-      --red-bg:    #fef2f2;
+      --bg:        #f5f3ef;
+      --white:     #ffffff;
+      --black:     #0a0a0a;
+      --border:    #e0ddd8;
+      --text:      #0a0a0a;
+      --text-sec:  #4a4744;
+      --text-mut:  #a8a5a0;
     }
 
     body {
-      font-family: 'Sora', sans-serif;
-      background: var(--cold);
-      color: var(--navy);
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 120px;
+      padding-bottom: 80px;
     }
 
     /* ===== HEADER ===== */
     header {
-      background: var(--navy);
-      padding: 0 32px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: var(--black);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    .header-logo { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
-    .header-tag  { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); }
-
-    /* ===== LAYOUT ===== */
-    .page { max-width: 720px; margin: 0 auto; padding: 48px 24px 0; }
-
-    .page-eyebrow {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--text-mut); margin-bottom: 8px;
+    .hdr {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .page-title {
-      font-size: 26px; font-weight: 700; color: var(--navy);
-      letter-spacing: -0.015em; margin-bottom: 40px;
+    .hdr-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.3);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .hdr-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .hdr-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-save {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      background: #fff;
+      color: var(--black);
+      border: none;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-save:hover    { opacity: 0.85; }
+    .btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-logout {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      background: transparent;
+      color: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 7px 13px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-logout:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+
+    .save-msg {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+    }
+
+    /* ===== PAGE ===== */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+
+    /* ===== SECTION ===== */
+    .section { margin-bottom: 56px; }
+
+    .sec-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-mut);
+      margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
     }
 
     /* ===== CARDS ===== */
     .card {
       background: var(--white);
-      padding: 28px;
-      margin-bottom: 16px;
-    }
-
-    .card-title {
-      font-size: 13px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--text-mut); margin-bottom: 20px;
-    }
-
-    /* ===== PHASE HEADER ===== */
-    .phase-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--cold);
-    }
-
-    .phase-num {
-      font-size: 28px; font-weight: 700; color: var(--border);
-      line-height: 1; flex-shrink: 0;
-    }
-
-    .phase-info-name  { font-size: 17px; font-weight: 600; color: var(--navy); }
-    .phase-info-dates { font-size: 12px; color: var(--text-sec); margin-top: 2px; }
-
-    /* ===== MILESTONE ROW ===== */
-    .milestone-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--cold);
-    }
-
-    .milestone-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .milestone-row:first-child { padding-top: 0; }
-
-    .milestone-row-name {
-      font-size: 14px; font-weight: 600; color: var(--navy);
-      flex: 1; line-height: 1.35;
-    }
-
-    .milestone-row-date {
-      font-size: 11px; color: var(--text-mut); margin-top: 2px; font-weight: 400;
-    }
-
-    /* ===== SELECT ===== */
-    select {
-      font-family: 'Sora', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 6px 10px;
-      border-radius: 4px;
       border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 12px;
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .f-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-mut);
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    select,
+    textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
       background: var(--white);
-      color: var(--navy);
-      cursor: pointer;
-      appearance: none;
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      width: 100%;
+      outline: none;
+      border-radius: 0;
       -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a90b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      padding-right: 30px;
-      flex-shrink: 0;
       transition: border-color 0.15s;
     }
 
-    select:focus { outline: none; border-color: var(--navy); }
+    input[type="text"]:focus,
+    input[type="url"]:focus,
+    select:focus,
+    textarea:focus { border-color: var(--text); }
 
-    select[data-status="done"]     { background-color: #EBF0FA; border-color: var(--navy); color: var(--navy); }
-    select[data-status="active"]   { background-color: #FFF5E6; border-color: var(--orange); color: var(--orange); }
-    select[data-status="upcoming"] { background-color: var(--cold); }
+    textarea { resize: vertical; line-height: 1.6; }
 
-    /* ===== UPDATES ===== */
-    .update-row {
+    /* ===== PHASE ===== */
+    .phase-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .phase-hdr {
       display: flex;
       align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .phase-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .phase-period {
+      font-size: 12px;
+      color: var(--text-mut);
+    }
+
+    /* ===== MILESTONE ===== */
+    .ms-card {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border);
+      padding: 18px;
+      margin-bottom: 8px;
+      background: var(--white);
+    }
+    .ms-card.s-done     { border-left-color: var(--black); }
+    .ms-card.s-active   { border-left-color: var(--text-sec); }
+    .ms-card.s-upcoming { border-left-color: var(--border); }
+
+    .ms-top {
+      display: grid;
+      grid-template-columns: 1fr 160px;
       gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--cold);
+      margin-bottom: 14px;
     }
 
-    .update-row:last-child { border-bottom: none; }
-
-    .update-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--orange); flex-shrink: 0; margin-top: 5px;
+    /* ===== MD PAIR ===== */
+    .sec-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-mut);
+      margin-bottom: 8px;
     }
 
-    .update-content { flex: 1; }
-    .update-date    { font-size: 11px; font-weight: 700; color: var(--text-mut); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .update-text    { font-size: 13px; color: var(--navy); line-height: 1.5; }
-
-    .btn-delete {
-      background: none; border: none; cursor: pointer;
-      font-size: 18px; color: var(--border); padding: 0 4px;
-      line-height: 1; transition: color 0.15s; flex-shrink: 0;
+    .sec-lbl span {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 10px;
     }
 
-    .btn-delete:hover { color: var(--red); }
-
-    /* Add update form */
-    .add-update-form {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--cold);
-      display: flex;
-      flex-direction: column;
+    .md-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .form-row { display: flex; gap: 10px; }
-
-    input[type="text"], input[type="date"] {
-      font-family: 'Sora', sans-serif;
+    .md-preview {
       font-size: 13px;
-      padding: 10px 14px;
+      line-height: 1.7;
+      color: var(--text-sec);
       border: 1px solid var(--border);
-      background: var(--cold);
-      color: var(--navy);
-      border-radius: 4px;
-      width: 100%;
-      transition: border-color 0.15s;
+      padding: 8px 12px;
+      background: var(--bg);
+      min-height: 90px;
+      overflow-y: auto;
     }
 
-    input[type="text"]:focus, input[type="date"]:focus {
-      outline: none;
-      border-color: var(--navy);
-      background: var(--white);
+    .md-preview p            { margin: 0 0 8px; }
+    .md-preview p:last-child { margin-bottom: 0; }
+    .md-preview ul           { padding-left: 16px; margin: 0 0 8px; }
+    .md-preview li           { margin-bottom: 3px; }
+    .md-preview strong       { font-weight: 600; color: var(--text); }
+    .md-preview h1, .md-preview h2, .md-preview h3 {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text); margin: 10px 0 5px;
+    }
+    .md-empty { color: var(--text-mut); font-style: italic; font-size: 13px; }
+
+    /* ===== ARTIFACT ===== */
+    .artifact-wrap {
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-top: 6px;
     }
 
-    input[type="date"] { width: auto; flex-shrink: 0; }
-
-    .btn-add {
-      font-family: 'Sora', sans-serif;
-      font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 10px 20px;
-      background: var(--navy); color: var(--white);
-      border: none; border-radius: 4px; cursor: pointer;
-      flex-shrink: 0; transition: opacity 0.15s;
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .btn-add:hover { opacity: 0.85; }
-
-    /* ===== SAVE BAR ===== */
-    .save-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--navy);
-      padding: 16px 24px;
-      display: flex;
+    /* ===== UPDATES ===== */
+    .update-row {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 8px;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      z-index: 200;
+      margin-bottom: 8px;
     }
 
-    .save-hint { font-size: 13px; color: rgba(240,244,250,0.6); }
+    /* ===== DIVIDER ===== */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
 
-    .btn-save {
-      font-family: 'Sora', sans-serif;
-      font-size: 12px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      padding: 12px 32px;
-      background: var(--orange); color: var(--white);
-      border: none; border-radius: 4px; cursor: pointer;
+    /* ===== BUTTONS ===== */
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 14px;
+      cursor: pointer;
+      border-radius: 0;
       transition: opacity 0.15s;
-      flex-shrink: 0;
+      display: inline-block;
     }
+    .btn:hover { opacity: 0.72; }
 
-    .btn-save:hover    { opacity: 0.9; }
-    .btn-save:disabled { opacity: 0.5; cursor: default; }
-
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed;
-      top: 72px; right: 24px;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 13px; font-weight: 600;
-      opacity: 0;
-      transform: translateY(-8px);
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-      z-index: 300;
+    .btn-pri  { background: var(--black); color: #fff; border: none; }
+    .btn-sec  { background: transparent; color: var(--text-sec); border: 1px solid var(--border); }
+    .btn-del  { background: transparent; color: var(--text-mut); border: 1px solid var(--border); }
+    .btn-txt  {
+      background: none; border: none; color: var(--text-mut);
+      font-family: 'Inter', sans-serif; font-size: 12px;
+      cursor: pointer; text-decoration: underline; padding: 0;
     }
-
-    .toast.show    { opacity: 1; transform: translateY(0); }
-    .toast-ok      { background: var(--green-bg); color: var(--green); }
-    .toast-err     { background: var(--red-bg); color: var(--red); }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 600px) {
-      header { padding: 0 16px; }
-      .page  { padding: 32px 16px 0; }
-      .card  { padding: 20px; }
-      .form-row { flex-direction: column; }
-      input[type="date"] { width: 100%; }
-      .save-bar { padding: 14px 16px; }
-      .save-hint { display: none; }
+    @media (max-width: 580px) {
+      .md-pair      { grid-template-columns: 1fr; }
+      .ms-top       { grid-template-columns: 1fr; }
+      .artifact-grid{ grid-template-columns: 1fr; }
+      .update-row   { grid-template-columns: 100px 1fr auto; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <span class="header-logo">IBF 100 Dias</span>
-    <span class="header-tag">— Admin</span>
-  </header>
-
-  <div class="page">
-    <p class="page-eyebrow">— PAINEL DE EDIÇÃO</p>
-    <h1 class="page-title">Atualizar Progresso</h1>
-    <div id="content"></div>
+<header>
+  <div class="hdr">
+    <div>
+      <span class="hdr-eyebrow">— IBF · Diretoria de Receita · Admin</span>
+      <span class="hdr-title">Editar plano</span>
+    </div>
+    <div class="hdr-actions">
+      <span class="save-msg" id="save-msg"></span>
+      <button class="btn-logout" onclick="doLogout()">Sair</button>
+      <button class="btn-save" id="btn-save" onclick="saveData()">Salvar tudo</button>
+    </div>
   </div>
+</header>
 
-  <div class="save-bar">
-    <span class="save-hint">Alterações ficam pendentes até você salvar.</span>
-    <button class="btn-save" id="btn-save" onclick="save()">Salvar alterações</button>
-  </div>
+<main class="page" id="main">
+  <p style="color:var(--text-mut);padding-top:40px;font-size:14px">Carregando...</p>
+</main>
 
-  <div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  var currentData = null;
 
-  <script>
-    var data = null;
+  /* ---- Utils ---- */
+  function esc(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g,  '&amp;')
+      .replace(/</g,  '&lt;')
+      .replace(/>/g,  '&gt;')
+      .replace(/"/g,  '&quot;');
+  }
 
-    /* ===== LOAD ===== */
-    async function load() {
-      var res = await fetch('./data.json');
-      data = await res.json();
-      render();
+  function showMsg(txt) {
+    var el = document.getElementById('save-msg');
+    el.textContent = txt;
+    setTimeout(function () { el.textContent = ''; }, 3000);
+  }
+
+  function updatePreview(id, text) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (text && text.trim()) {
+      el.innerHTML = marked.parse(text);
+      el.classList.remove('md-empty');
+    } else {
+      el.innerHTML = '<em>Pré-visualização</em>';
+      el.classList.add('md-empty');
     }
+  }
 
-    /* ===== RENDER ===== */
-    function render() {
-      var html = '';
+  function formatToday() {
+    var d = new Date();
+    var mo = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    return d.getDate() + ' ' + mo[d.getMonth()] + ' ' + d.getFullYear();
+  }
 
-      /* Phases + Milestones */
-      data.phases.forEach(function(phase) {
-        html += '<div class="card">';
-        html += '<div class="phase-header">';
-        html += '<div class="phase-num">' + phase.number + '</div>';
-        html += '<div><p class="phase-info-name">' + phase.name + '</p>';
-        html += '<p class="phase-info-dates">' + phase.period + ' · ' + phase.dates + '</p></div>';
-        html += '</div>';
+  /* ---- Setters ---- */
+  function setPhaseStatus(pi, val) {
+    currentData.phases[pi].status = val;
+  }
 
-        phase.milestones.forEach(function(m) {
-          html += '<div class="milestone-row">';
-          html += '<div>';
-          html += '<p class="milestone-row-name">' + m.name + '</p>';
-          html += '<p class="milestone-row-date">' + m.due_date + '</p>';
-          html += '</div>';
-          html += '<select data-phase="' + phase.id + '" data-milestone="' + m.id + '" data-status="' + m.status + '" onchange="updateStatus(this)">';
-          html += '<option value="upcoming"' + (m.status === 'upcoming' ? ' selected' : '') + '>A iniciar</option>';
-          html += '<option value="active"'  + (m.status === 'active'   ? ' selected' : '') + '>Em andamento</option>';
-          html += '<option value="done"'    + (m.status === 'done'     ? ' selected' : '') + '>Concluído</option>';
-          html += '</select>';
-          html += '</div>';
-        });
+  function setMs(pi, mi, field, val) {
+    currentData.phases[pi].milestones[mi][field] = val;
+  }
 
-        html += '</div>'; /* card */
+  function setMsContent(pi, mi, field, val) {
+    currentData.phases[pi].milestones[mi][field] = val.trim() || null;
+    updatePreview('prv-' + field + '-' + pi + '-' + mi, val);
+  }
+
+  function setArt(pi, mi, field, val) {
+    var art = currentData.phases[pi].milestones[mi].artifact;
+    if (art) art[field] = val;
+  }
+
+  function toggleArtifact(pi, mi) {
+    var m = currentData.phases[pi].milestones[mi];
+    m.artifact = m.artifact
+      ? null
+      : { type: 'DOCUMENTO', name: '', date: '', link: '' };
+    renderAll();
+  }
+
+  /* ---- Updates ---- */
+  function addUpdate() {
+    currentData.updates.unshift({ date: formatToday(), text: '' });
+    renderAll();
+  }
+
+  function removeUpdate(i) {
+    currentData.updates.splice(i, 1);
+    renderAll();
+  }
+
+  function setUpdate(i, field, val) {
+    currentData.updates[i][field] = val;
+  }
+
+  /* ---- Render ---- */
+  function renderAll() {
+    document.getElementById('main').innerHTML =
+      renderUpdates() + renderPhases();
+
+    // Inicializa previews após injeção no DOM
+    currentData.phases.forEach(function (ph, pi) {
+      ph.milestones.forEach(function (m, mi) {
+        updatePreview('prv-content-'          + pi + '-' + mi, m.content);
+        updatePreview('prv-expected_outcome-' + pi + '-' + mi, m.expected_outcome);
       });
+    });
+  }
 
-      /* Updates */
-      html += '<div class="card">';
-      html += '<p class="card-title">— Últimas movimentações</p>';
-      html += '<div id="updates-list">';
-      html += renderUpdates();
-      html += '</div>';
-      html += '<div class="add-update-form">';
-      html += '<p style="font-size:13px;font-weight:600;color:var(--text-sec)">Adicionar atualização</p>';
-      html += '<div class="form-row">';
-      html += '<input type="date" id="new-date" value="' + todayISO() + '">';
-      html += '<input type="text" id="new-text" placeholder="Descreva o que aconteceu...">';
-      html += '<button class="btn-add" onclick="addUpdate()">Adicionar</button>';
-      html += '</div>';
-      html += '</div>';
-      html += '</div>';
+  function renderUpdates() {
+    var rows = currentData.updates.map(function (u, i) {
+      return '<div class="update-row">' +
+        '<input type="text" value="' + esc(u.date) + '" placeholder="Data" ' +
+          'oninput="setUpdate(' + i + ',\'date\',this.value)">' +
+        '<input type="text" value="' + esc(u.text) + '" placeholder="Texto do update" ' +
+          'oninput="setUpdate(' + i + ',\'text\',this.value)">' +
+        '<button class="btn btn-del" onclick="removeUpdate(' + i + ')">Remover</button>' +
+      '</div>';
+    }).join('');
 
-      document.getElementById('content').innerHTML = html;
-    }
+    return '<section class="section">' +
+      '<p class="sec-eyebrow">— Feed</p>' +
+      '<h2 class="sec-title">Últimas movimentações</h2>' +
+      '<div class="card">' +
+        rows +
+        '<div style="margin-top:12px">' +
+          '<button class="btn btn-sec" onclick="addUpdate()">+ Adicionar update</button>' +
+        '</div>' +
+      '</div>' +
+    '</section>';
+  }
 
-    function renderUpdates() {
-      if (!data.updates.length) return '<p style="font-size:13px;color:var(--text-mut);padding:8px 0">Nenhuma atualização ainda.</p>';
-      return data.updates.map(function(u, i) {
-        return '<div class="update-row">' +
-          '<div class="update-dot"></div>' +
-          '<div class="update-content">' +
-          '<p class="update-date">' + u.date + '</p>' +
-          '<p class="update-text">' + u.text + '</p>' +
-          '</div>' +
-          '<button class="btn-delete" onclick="deleteUpdate(' + i + ')" title="Remover">×</button>' +
-          '</div>';
+  function renderPhases() {
+    return '<section class="section">' +
+      '<p class="sec-eyebrow">— Cronograma</p>' +
+      '<h2 class="sec-title">Fases e Milestones</h2>' +
+      currentData.phases.map(function (ph, pi) {
+        return renderPhase(ph, pi);
+      }).join('') +
+    '</section>';
+  }
+
+  function renderPhase(ph, pi) {
+    var statusOpts = statusOptions(ph.status, false);
+
+    var milestones = ph.milestones.map(function (m, mi) {
+      return renderMilestone(m, pi, mi);
+    }).join('');
+
+    return '<div class="phase-card">' +
+      '<div class="phase-hdr">' +
+        '<div>' +
+          '<div class="phase-name">' + esc(ph.number) + ' — ' + esc(ph.name) + '</div>' +
+          '<div class="phase-period">' + esc(ph.period) + ' · ' + esc(ph.dates) + '</div>' +
+        '</div>' +
+        '<div style="min-width:160px">' +
+          '<label class="f-label">Status da fase</label>' +
+          '<select onchange="setPhaseStatus(' + pi + ',this.value)">' + statusOpts + '</select>' +
+        '</div>' +
+      '</div>' +
+      milestones +
+    '</div>';
+  }
+
+  function statusOptions(current) {
+    return [
+      { v: 'upcoming', l: 'A iniciar' },
+      { v: 'active',   l: 'Em andamento' },
+      { v: 'done',     l: 'Concluído' }
+    ].map(function (o) {
+      return '<option value="' + o.v + '"' + (current === o.v ? ' selected' : '') + '>' + o.l + '</option>';
+    }).join('');
+  }
+
+  function renderMilestone(m, pi, mi) {
+    var cId = 'prv-content-'          + pi + '-' + mi;
+    var oId = 'prv-expected_outcome-' + pi + '-' + mi;
+
+    /* Artifact block */
+    var artHtml;
+    if (m.artifact) {
+      var typeOpts = ['DOCUMENTO','ORGANOGRAMA','APRESENTAÇÃO','DASHBOARD'].map(function (t) {
+        return '<option value="' + t + '"' + (m.artifact.type === t ? ' selected' : '') + '>' + t + '</option>';
       }).join('');
+
+      artHtml =
+        '<div class="artifact-wrap">' +
+          '<div class="artifact-grid">' +
+            '<div class="field" style="margin:0">' +
+              '<label class="f-label">Tipo</label>' +
+              '<select onchange="setArt(' + pi + ',' + mi + ',\'type\',this.value)">' + typeOpts + '</select>' +
+            '</div>' +
+            '<div class="field" style="margin:0">' +
+              '<label class="f-label">Data</label>' +
+              '<input type="text" value="' + esc(m.artifact.date) + '" placeholder="ex: 14 abr 2026" ' +
+                'oninput="setArt(' + pi + ',' + mi + ',\'date\',this.value)">' +
+            '</div>' +
+          '</div>' +
+          '<div class="field">' +
+            '<label class="f-label">Nome</label>' +
+            '<input type="text" value="' + esc(m.artifact.name) + '" placeholder="Nome do artefato" ' +
+              'oninput="setArt(' + pi + ',' + mi + ',\'name\',this.value)">' +
+          '</div>' +
+          '<div class="field" style="margin-bottom:12px">' +
+            '<label class="f-label">Link</label>' +
+            '<input type="url" value="' + esc(m.artifact.link) + '" placeholder="https://..." ' +
+              'oninput="setArt(' + pi + ',' + mi + ',\'link\',this.value)">' +
+          '</div>' +
+          '<button class="btn-txt" onclick="toggleArtifact(' + pi + ',' + mi + ')">Remover artefato</button>' +
+        '</div>';
+    } else {
+      artHtml = '<button class="btn btn-sec" onclick="toggleArtifact(' + pi + ',' + mi + ')">+ Adicionar artefato</button>';
     }
 
-    /* ===== HANDLERS ===== */
+    return '<div class="ms-card s-' + m.status + '">' +
 
-    function updateStatus(el) {
-      var phaseId     = parseInt(el.dataset.phase);
-      var milestoneId = el.dataset.milestone;
-      var newStatus   = el.value;
+      /* Nome + status */
+      '<div class="ms-top">' +
+        '<div class="field" style="margin:0">' +
+          '<label class="f-label">Nome</label>' +
+          '<input type="text" value="' + esc(m.name) + '" ' +
+            'oninput="setMs(' + pi + ',' + mi + ',\'name\',this.value)">' +
+        '</div>' +
+        '<div class="field" style="margin:0">' +
+          '<label class="f-label">Status</label>' +
+          '<select onchange="setMs(' + pi + ',' + mi + ',\'status\',this.value)">' + statusOptions(m.status) + '</select>' +
+        '</div>' +
+      '</div>' +
 
-      var phase = data.phases.find(function(p) { return p.id === phaseId; });
-      var m     = phase.milestones.find(function(m) { return m.id === milestoneId; });
-      m.status  = newStatus;
+      /* Descrição + data */
+      '<div class="field">' +
+        '<label class="f-label">Descrição curta</label>' +
+        '<input type="text" value="' + esc(m.description) + '" ' +
+          'oninput="setMs(' + pi + ',' + mi + ',\'description\',this.value)">' +
+      '</div>' +
+      '<div class="field">' +
+        '<label class="f-label">Data prevista</label>' +
+        '<input type="text" value="' + esc(m.due_date) + '" style="max-width:200px" ' +
+          'oninput="setMs(' + pi + ',' + mi + ',\'due_date\',this.value)">' +
+      '</div>' +
 
-      /* also update phase status */
-      var statuses = phase.milestones.map(function(m) { return m.status; });
-      if (statuses.every(function(s) { return s === 'done'; })) {
-        phase.status = 'done';
-      } else if (statuses.some(function(s) { return s === 'active' || s === 'done'; })) {
-        phase.status = 'active';
-      } else {
-        phase.status = 'upcoming';
-      }
+      '<hr>' +
 
-      el.dataset.status = newStatus;
+      /* Content */
+      '<p class="sec-lbl">— O que foi feito <span>(aparece em done · active)</span></p>' +
+      '<div class="md-pair">' +
+        '<textarea rows="6" placeholder="Cole o conteúdo do ClickUp em Markdown..." ' +
+          'oninput="setMsContent(' + pi + ',' + mi + ',\'content\',this.value)">' +
+          esc(m.content || '') +
+        '</textarea>' +
+        '<div class="md-preview md-empty" id="' + cId + '"><em>Pré-visualização</em></div>' +
+      '</div>' +
+
+      '<hr>' +
+
+      /* Expected outcome */
+      '<p class="sec-lbl">— O que está por vir <span>(aparece em upcoming · active)</span></p>' +
+      '<div class="md-pair">' +
+        '<textarea rows="4" placeholder="O que a Diretoria pode esperar desta entrega..." ' +
+          'oninput="setMsContent(' + pi + ',' + mi + ',\'expected_outcome\',this.value)">' +
+          esc(m.expected_outcome || '') +
+        '</textarea>' +
+        '<div class="md-preview md-empty" id="' + oId + '"><em>Pré-visualização</em></div>' +
+      '</div>' +
+
+      '<hr>' +
+
+      /* Artifact */
+      '<p class="sec-lbl">— Artefato</p>' +
+      artHtml +
+
+    '</div>';
+  }
+
+  /* ---- Load ---- */
+  async function loadData() {
+    try {
+      var res = await fetch('/api/data');
+      if (res.status === 401) { window.location.href = '/login'; return; }
+      if (!res.ok) throw new Error();
+      currentData = await res.json();
+      renderAll();
+    } catch (e) {
+      document.getElementById('main').innerHTML =
+        '<p style="color:var(--text-mut);padding-top:40px;font-size:14px">Erro ao carregar dados.</p>';
     }
+  }
 
-    function addUpdate() {
-      var dateEl = document.getElementById('new-date');
-      var textEl = document.getElementById('new-text');
-      var text   = textEl.value.trim();
-
-      if (!text) { textEl.focus(); return; }
-
-      var d   = new Date(dateEl.value + 'T12:00:00');
-      var fmt = d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' })
-                 .replace(/ de /g, ' ').replace('.', '');
-
-      data.updates.unshift({ date: fmt, text: text });
-      textEl.value = '';
-      document.getElementById('updates-list').innerHTML = renderUpdates();
-    }
-
-    function deleteUpdate(i) {
-      data.updates.splice(i, 1);
-      document.getElementById('updates-list').innerHTML = renderUpdates();
-    }
-
-    /* ===== SAVE ===== */
-
-    async function save() {
-      var btn = document.getElementById('btn-save');
-      btn.disabled = true;
-      btn.textContent = 'Salvando...';
-
-      try {
-        var res = await fetch('/api/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data, null, 2)
-        });
-        var json = await res.json();
-        if (json.ok) {
-          showToast('Salvo com sucesso.', 'ok');
-        } else {
-          showToast('Erro: ' + json.error, 'err');
-        }
-      } catch (e) {
-        showToast('Erro ao salvar. Verifique o servidor.', 'err');
-      }
-
+  /* ---- Save ---- */
+  async function saveData() {
+    var btn = document.getElementById('btn-save');
+    btn.disabled = true;
+    showMsg('Salvando...');
+    try {
+      var res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentData)
+      });
+      if (res.ok)              { showMsg('Salvo.'); }
+      else if (res.status === 401) { window.location.href = '/login'; }
+      else                     { showMsg('Erro ao salvar.'); }
+    } catch (e) {
+      showMsg('Erro de conexão.');
+    } finally {
       btn.disabled = false;
-      btn.textContent = 'Salvar alterações';
     }
+  }
 
-    /* ===== UTILS ===== */
+  /* ---- Logout ---- */
+  async function doLogout() {
+    await fetch('/api/logout', { method: 'POST' });
+    window.location.href = '/login';
+  }
 
-    function todayISO() {
-      return new Date().toISOString().slice(0, 10);
-    }
-
-    function showToast(msg, type) {
-      var t = document.getElementById('toast');
-      t.textContent = msg;
-      t.className = 'toast toast-' + type;
-      void t.offsetWidth;
-      t.classList.add('show');
-      setTimeout(function() { t.classList.remove('show'); }, 3000);
-    }
-
-    load();
-  </script>
+  loadData();
+</script>
 </body>
 </html>

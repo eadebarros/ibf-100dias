@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after {
@@ -495,73 +496,157 @@
       padding: 80px 0;
     }
 
-    /* --- Árvore desktop --- */
-    .oc-tree-wrap {
+    .orgchart-section .container {
+      max-width: 1100px;
+    }
+
+    /* --- Árvore horizontal desktop --- */
+    .oc-h-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
       overflow-x: auto;
       padding-bottom: 8px;
     }
 
-    .oc-tree,
-    .oc-tree-children {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      padding: 0;
-      margin: 0;
+    /* Nó diretor */
+    .oc-director {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 48px;
+      text-align: center;
+      min-width: 260px;
     }
 
-    .oc-tree-item {
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    .oc-director-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(240, 244, 250, 0.4);
+      margin-bottom: 5px;
     }
 
-    /* Linha vertical que une pai → filhos */
-    .oc-tree-item > .oc-tree-children {
-      padding-left: 32px;
-      border-left: 1px solid var(--border-light);
-      margin-left: 20px;
-      margin-top: 0;
-      gap: 0;
+    .oc-director-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
     }
 
-    /* Linha horizontal antes de cada nó filho */
-    .oc-tree-item > .oc-tree-children > .oc-tree-item > .oc-node-wrap::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 1px;
+    .oc-director-sub {
+      font-size: 12px;
+      color: rgba(240, 244, 250, 0.5);
+    }
+
+    /* Conectores verticais */
+    .oc-vline {
+      width: 2px;
+      height: 28px;
       background: var(--border-light);
-      vertical-align: middle;
-      margin-right: 0;
       flex-shrink: 0;
     }
 
-    .oc-node-wrap {
+    .oc-vline--dark { background: var(--navy); }
+    .oc-vline--sm   { height: 18px; }
+
+    /* Linha horizontal + colunas */
+    .oc-h-columns {
       display: flex;
-      align-items: flex-start;
-      padding: 12px 0;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      min-width: 640px;
     }
 
-    .oc-tree-item > .oc-tree-children > .oc-tree-item > .oc-node-wrap {
-      align-items: center;
+    .oc-h-columns::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 2px;
+      background: var(--border-light);
+      left: 5%;
+      right: 5%;
     }
+
+    .oc-h-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding: 0 6px;
+    }
+
+    .oc-col-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .oc-col-node-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    /* Legenda */
+    .oc-legend {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+      flex-wrap: wrap;
+    }
+
+    .oc-legend-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .oc-leg-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .oc-ls {
+      width: 14px;
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    .oc-ls--navy   { background: var(--navy); }
+    .oc-ls--orange { background: var(--orange); }
+    .oc-ls--dash   { background: repeating-linear-gradient(90deg, var(--text-muted) 0, var(--text-muted) 3px, transparent 3px, transparent 7px); }
 
     /* Nó */
     .oc-node {
       position: relative;
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       gap: 4px;
-      padding: 14px 18px;
+      padding: 12px 14px;
       background: var(--white);
       border: 1.5px solid var(--border-light);
       cursor: pointer;
       user-select: none;
-      min-width: 200px;
-      max-width: 240px;
+      width: 100%;
+      max-width: 176px;
       transition: border-color 0.15s;
       outline: none;
     }
@@ -583,6 +668,11 @@
       border-style: dashed;
       border-color: var(--border-light);
       background: var(--cold-neutral);
+    }
+
+    .oc-node--ext {
+      border-left: 3px solid var(--orange);
+      background: #FFF7EE;
     }
 
     .oc-node-name {
@@ -630,6 +720,11 @@
       background: transparent;
       color: var(--text-muted);
       border: 1px dashed var(--border-light);
+    }
+
+    .oc-badge--ext {
+      background: var(--orange);
+      color: var(--white);
     }
 
     /* Card de detalhes (tooltip) */
@@ -843,6 +938,79 @@
         flex-wrap: wrap;
       }
     }
+
+    /* ===== MILESTONE EXPANDÍVEL ===== */
+    .milestone-card {
+      position: relative;
+    }
+
+    .is-expandable {
+      cursor: pointer;
+    }
+
+    .is-expandable:hover {
+      background: #fafcff;
+    }
+
+    .ms-toggle {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .milestone-expand {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+
+    .ms-expanded .milestone-expand {
+      max-height: 2000px;
+    }
+
+    .content-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin: 16px 0 8px;
+    }
+
+    .milestone-content {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      padding-top: 2px;
+      padding-bottom: 4px;
+    }
+
+    .milestone-content p            { margin: 0 0 10px; }
+    .milestone-content p:last-child { margin-bottom: 0; }
+    .milestone-content ul           { padding-left: 18px; margin: 0 0 10px; }
+    .milestone-content li           { margin-bottom: 4px; }
+    .milestone-content strong       { font-weight: 600; color: var(--navy); }
+    .milestone-content h1,
+    .milestone-content h2,
+    .milestone-content h3 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      margin: 14px 0 6px;
+    }
+
+    .expand-divider {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 14px 0 0;
+    }
   </style>
 </head>
 <body>
@@ -973,21 +1141,52 @@
       '</div>';
     }
 
+    function toggleMs(card) {
+      card.classList.toggle('ms-expanded');
+      var icon = card.querySelector('.ms-toggle');
+      if (icon) icon.textContent = card.classList.contains('ms-expanded') ? '−' : '+';
+    }
+
     function renderMilestone(milestone, isLast) {
-      var dotClass = 'milestone-dot dot-' + milestone.status;
-      var cardClass = 'milestone-card card-' + milestone.status;
+      var dotClass  = 'milestone-dot dot-' + milestone.status;
+      var hasContent = milestone.content && milestone.content.trim();
+      var hasOutcome = milestone.expected_outcome && milestone.expected_outcome.trim();
+      var showContent = hasContent && (milestone.status === 'done' || milestone.status === 'active');
+      var showOutcome = hasOutcome && (milestone.status === 'upcoming' || milestone.status === 'active');
+      var expandable  = showContent || showOutcome;
+
+      var cardClass = 'milestone-card card-' + milestone.status + (expandable ? ' is-expandable' : '');
+      var clickAttr = expandable ? ' onclick="toggleMs(this)"' : '';
+
+      var expandHtml = '';
+      if (expandable) {
+        expandHtml = '<hr class="expand-divider">' +
+          '<div class="milestone-expand">';
+        if (showContent) {
+          expandHtml += '<p class="content-section-label">— O que foi feito</p>' +
+            '<div class="milestone-content">' + marked.parse(milestone.content) + '</div>';
+        }
+        if (showOutcome) {
+          expandHtml += '<p class="content-section-label">— O que está por vir</p>' +
+            '<div class="milestone-content">' + marked.parse(milestone.expected_outcome) + '</div>';
+        }
+        expandHtml += '</div>';
+      }
+
       return '<div class="milestone-item">' +
         '<div class="milestone-col-left">' +
           '<div class="' + dotClass + '"></div>' +
           (isLast ? '' : '<div class="milestone-line"></div>') +
         '</div>' +
-        '<div class="' + cardClass + '">' +
+        '<div class="' + cardClass + '"' + clickAttr + '>' +
+          (expandable ? '<span class="ms-toggle" aria-hidden="true">+</span>' : '') +
           '<p class="milestone-name">' + milestone.name + '</p>' +
           '<p class="milestone-desc">' + milestone.description + '</p>' +
           '<div class="milestone-meta">' +
             '<span class="milestone-date">' + milestone.due_date + '</span>' +
             '<span class="' + badgeClass(milestone.status) + '">' + badgeText(milestone.status) + '</span>' +
           '</div>' +
+          expandHtml +
           renderArtifact(milestone.artifact) +
         '</div>' +
       '</div>';
@@ -1033,7 +1232,7 @@
 
     async function init() {
       try {
-        var response = await fetch('./data.json');
+        var response = await fetch('/api/data');
         var data = await response.json();
         var plan = data.plan;
         var phases = data.phases;

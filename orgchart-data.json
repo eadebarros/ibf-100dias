@@ -13,61 +13,63 @@
     ],
     "children": [
       {
-        "id": "joel",
-        "name": "Joel",
-        "role": "Gerente de Marketing",
+        "id": "gustavo",
+        "name": "Gustavo",
+        "role": "Especialista de Funis & Performance",
         "reportsTo": "Edu de Barros",
         "status": "confirmed",
+        "area": "Marketing",
         "responsibilities": [
-          "Processos e operação de marketing",
-          "Calendário editorial",
-          "Coordenação da equipe criativa",
-          "Padrão de marca e comunicação"
+          "Estruturação e otimização de funis por produto",
+          "Tráfego pago e direct response",
+          "Automações e fluxos de e-mail",
+          "CRO — otimização de conversão"
         ],
-        "children": [
-          {
-            "id": "gustavo",
-            "name": "Gustavo",
-            "role": "Especialista de Funis & Performance",
-            "reportsTo": "Joel",
-            "status": "confirmed",
-            "responsibilities": [
-              "Estruturação e otimização de funis por produto",
-              "Tráfego pago e direct response",
-              "Automações e fluxos de e-mail",
-              "CRO — otimização de conversão"
-            ],
-            "children": []
-          },
-          {
-            "id": "mateus",
-            "name": "Mateus",
-            "role": "Suporte de Marketing & Operações",
-            "reportsTo": "Joel",
-            "status": "evaluation",
-            "responsibilities": [
-              "Prospecção outbound de escolas",
-              "Organização de dados e listas",
-              "Apoio em copy e estratégia",
-              "Suporte operacional ao Gustavo"
-            ],
-            "children": []
-          },
-          {
-            "id": "paulaz",
-            "name": "Paula Z.",
-            "role": "Coord. de Conteúdo",
-            "reportsTo": "Joel",
-            "status": "confirmed",
-            "responsibilities": [
-              "Produção de conteúdo para Instagram",
-              "Copy e identidade verbal",
-              "Pauta editorial",
-              "Alinhamento com estratégia de funis"
-            ],
-            "children": []
-          }
-        ]
+        "children": []
+      },
+      {
+        "id": "paulaz",
+        "name": "Paula Z.",
+        "role": "Coord. de Conteúdo",
+        "reportsTo": "Edu de Barros",
+        "status": "confirmed",
+        "area": "Marketing",
+        "responsibilities": [
+          "Produção de conteúdo para Instagram",
+          "Copy e identidade verbal",
+          "Pauta editorial",
+          "Alinhamento com estratégia de funis"
+        ],
+        "children": []
+      },
+      {
+        "id": "mateus",
+        "name": "Mateus",
+        "role": "Analista de Funil",
+        "reportsTo": "Edu de Barros",
+        "status": "confirmed",
+        "area": "Marketing",
+        "responsibilities": [
+          "Análise e otimização de funis de conversão",
+          "Suporte operacional ao Gustavo",
+          "Organização de dados e listas",
+          "Apoio em copy e estratégia"
+        ],
+        "children": []
+      },
+      {
+        "id": "luiza",
+        "name": "Luiza",
+        "role": "Estratégia de Conteúdo",
+        "reportsTo": "Edu de Barros",
+        "status": "confirmed",
+        "area": "Marketing",
+        "responsibilities": [
+          "Estratégia de conteúdo e posicionamento",
+          "Identidade verbal da marca",
+          "Consultoria externa de comunicação"
+        ],
+        "children": []
       },
       {
         "id": "simone",
@@ -75,6 +77,7 @@
         "role": "Gerente de Vendas",
         "reportsTo": "Edu de Barros",
         "status": "confirmed",
+        "area": "Vendas",
         "responsibilities": [
           "Pipeline DPP B2B com escolas",
           "Venda consultiva e follow-up",
@@ -96,6 +99,48 @@
             "children": []
           }
         ]
+      },
+      {
+        "id": "captacao",
+        "name": "A definir",
+        "role": "Captação & Doações",
+        "reportsTo": "Edu de Barros",
+        "status": "open",
+        "area": "Operações",
+        "responsibilities": [
+          "Relacionamento com pessoas físicas e empresas",
+          "Fundações e editais",
+          "Estratégia de captação"
+        ],
+        "children": []
+      },
+      {
+        "id": "crm",
+        "name": "A definir",
+        "role": "CRM & Analytics",
+        "reportsTo": "Edu de Barros",
+        "status": "open",
+        "area": "Operações",
+        "responsibilities": [
+          "Gestão do funil e dashboard",
+          "Dados e conversão",
+          "Suporte analítico"
+        ],
+        "children": []
+      },
+      {
+        "id": "pagamentos",
+        "name": "A definir",
+        "role": "Pagamento & Ops",
+        "reportsTo": "Edu de Barros",
+        "status": "open",
+        "area": "Operações",
+        "responsibilities": [
+          "Gestão de plataforma de pagamento",
+          "Cobranças e repasses",
+          "Operações financeiras"
+        ],
+        "children": []
       }
     ]
   }

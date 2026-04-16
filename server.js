@@ -1,85 +1,130 @@
 const express = require('express');
-const session = require('express-session');
 const fs      = require('fs');
 const path    = require('path');
 const crypto  = require('crypto');
 
-const app    = express();
-const PORT   = process.env.PORT || 3000;
-const PASS   = process.env.SITE_PASSWORD || 'ibf2025';
-const SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
+const app  = express();
+const PORT = process.env.PORT || 3000;
 
-// DATA_DIR aponta para o volume persistente no Railway.
-// Em dev (sem a env var), usa o próprio diretório do projeto.
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'ibf2026';
+
 const DATA_DIR  = process.env.DATA_DIR || __dirname;
-const DATA_PATH = path.join(DATA_DIR, 'data.json');
-const SEED_PATH = path.join(__dirname, 'data.json'); // arquivo bundled no repo
+const DATA_FILE = path.join(DATA_DIR, 'data.json');
 
-// Primeiro deploy: se o volume estiver vazio, copia o data.json do repo como seed.
-if (DATA_DIR !== __dirname && !fs.existsSync(DATA_PATH)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-  fs.copyFileSync(SEED_PATH, DATA_PATH);
-  console.log('Volume vazio — seed copiado para ' + DATA_PATH);
+// Fallback: copia data.json do repo para o Volume na primeira execução
+if (process.env.DATA_DIR && !fs.existsSync(DATA_FILE)) {
+  const localFile = path.join(__dirname, 'data.json');
+  if (fs.existsSync(localFile)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.copyFileSync(localFile, DATA_FILE);
+    console.log('data.json copiado para o Volume.');
+  }
 }
 
-app.use(express.json());
+// Sessões em memória (sem dependência externa)
+const sessions = new Map();
+
+function generateToken() {
+  return crypto.randomBytes(32).toString('hex');
+}
+
+function isAuthenticated(req) {
+  const token = req.cookies && req.cookies.session;
+  return token && sessions.has(token);
+}
+
+// Parse de cookies manual
+app.use((req, res, next) => {
+  req.cookies = {};
+  const header = req.headers.cookie;
+  if (header) {
+    header.split(';').forEach(function (cookie) {
+      const parts = cookie.trim().split('=');
+      const name  = parts.shift().trim();
+      req.cookies[name] = parts.join('=').trim();
+    });
+  }
+  next();
+});
+
+app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: false }));
-app.use(session({
-  secret: SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { httpOnly: true, maxAge: 8 * 60 * 60 * 1000 } // 8 horas
-}));
 
-// ===== ROTAS PÚBLICAS =====
+// ===== ROTAS DE AUTENTICAÇÃO =====
 
-app.get('/login.html', (req, res) => {
-  if (req.session.authenticated) return res.redirect('/');
+app.get('/login', (req, res) => {
+  if (isAuthenticated(req)) return res.redirect('/admin');
   res.sendFile(path.join(__dirname, 'login.html'));
 });
 
+// Compatibilidade com a rota antiga /login.html
+app.get('/login.html', (req, res) => res.redirect('/login'));
+
 app.post('/api/login', (req, res) => {
   const { password } = req.body;
-  const a = Buffer.from(password || '');
-  const b = Buffer.from(PASS);
-  const match = a.length === b.length && crypto.timingSafeEqual(a, b);
-  if (match) {
-    req.session.authenticated = true;
-    res.redirect('/');
+  if (password === ADMIN_PASSWORD) {
+    const token = generateToken();
+    sessions.set(token, { created: Date.now() });
+    res.setHeader('Set-Cookie', `session=${token}; HttpOnly; Path=/; Max-Age=86400`);
+    res.json({ ok: true });
   } else {
-    res.redirect('/login.html?error=1');
+    res.status(401).json({ error: 'Senha incorreta.' });
   }
 });
 
-app.get('/logout', (req, res) => {
-  req.session.destroy(() => res.redirect('/login.html'));
+app.post('/api/logout', (req, res) => {
+  const token = req.cookies && req.cookies.session;
+  if (token) sessions.delete(token);
+  res.setHeader('Set-Cookie', 'session=; HttpOnly; Path=/; Max-Age=0');
+  res.json({ ok: true });
 });
 
-// ===== AUTENTICAÇÃO =====
+// ===== API DE DADOS =====
 
-app.use((req, res, next) => {
-  if (req.session.authenticated) return next();
-  res.redirect('/login.html');
+app.get('/api/data', (req, res) => {
+  try {
+    const raw = fs.readFileSync(DATA_FILE, 'utf8');
+    res.json(JSON.parse(raw));
+  } catch (e) {
+    res.status(500).json({ error: 'Erro ao ler dados.' });
+  }
 });
 
-// ===== ROTAS PROTEGIDAS =====
-
-// Serve o data.json do volume (sobrescreve o arquivo estático do repo)
-app.get('/data.json', (req, res) => {
-  res.sendFile(DATA_PATH);
+app.post('/api/save', (req, res) => {
+  if (!isAuthenticated(req)) {
+    return res.status(401).json({ error: 'Não autorizado.' });
+  }
+  try {
+    const data = req.body;
+    if (!data.plan || !data.phases || !data.updates) {
+      return res.status(400).json({ error: 'Estrutura inválida.' });
+    }
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: 'Erro ao salvar.' });
+  }
 });
+
+// ===== ADMIN (protegido) =====
+
+app.get('/admin', (req, res) => {
+  if (!isAuthenticated(req)) return res.redirect('/login');
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+// ===== ROTA RAIZ (antes do static, para proteger index.html) =====
+
+app.get('/', (req, res) => {
+  if (!isAuthenticated(req)) return res.redirect('/login');
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// ===== ESTÁTICOS =====
 
 app.use(express.static(__dirname));
 
-app.post('/api/save', (req, res) => {
-  try {
-    fs.writeFileSync(DATA_PATH, JSON.stringify(req.body, null, 2));
-    res.json({ ok: true });
-  } catch (err) {
-    res.status(500).json({ ok: false, error: err.message });
-  }
-});
-
 app.listen(PORT, () => {
-  console.log('IBF 100 Dias · data em: ' + DATA_PATH);
+  console.log(`IBF 100 Dias rodando na porta ${PORT}`);
+  console.log(`DATA_FILE: ${DATA_FILE}`);
 });
