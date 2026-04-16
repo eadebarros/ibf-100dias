@@ -339,6 +339,7 @@
     </div>
     <div class="hdr-actions">
       <span class="save-msg" id="save-msg"></span>
+      <button class="btn-logout" onclick="doSeed()" title="Sobrescreve o Volume com o data.json do repositório">↑ Sync repo</button>
       <button class="btn-logout" onclick="doLogout()">Sair</button>
       <button class="btn-save" id="btn-save" onclick="saveData()">Salvar tudo</button>
     </div>
@@ -640,6 +641,26 @@
       showMsg('Erro de conexão.');
     } finally {
       btn.disabled = false;
+    }
+  }
+
+  /* ---- Seed (sync do repo para o Volume) ---- */
+  async function doSeed() {
+    if (!confirm('Sobrescrever o Volume com o data.json do repositório?\n\nIsso apaga as edições feitas pelo admin que não foram commitadas.')) return;
+    showMsg('Sincronizando...');
+    try {
+      var res = await fetch('/api/seed', { method: 'POST' });
+      if (res.ok) {
+        showMsg('Sincronizado. Recarregando...');
+        setTimeout(function () { window.location.reload(); }, 1200);
+      } else if (res.status === 401) {
+        window.location.href = '/login';
+      } else {
+        var body = await res.json();
+        showMsg('Erro: ' + (body.error || 'desconhecido'));
+      }
+    } catch (e) {
+      showMsg('Erro de conexão.');
     }
   }
 

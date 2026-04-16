@@ -106,6 +106,24 @@ app.post('/api/save', (req, res) => {
   }
 });
 
+// POST /api/seed — sobrescreve o Volume com o data.json do repo (protegido)
+app.post('/api/seed', (req, res) => {
+  if (!isAuthenticated(req)) {
+    return res.status(401).json({ error: 'Não autorizado.' });
+  }
+  try {
+    const localFile = path.join(__dirname, 'data.json');
+    if (!fs.existsSync(localFile)) {
+      return res.status(404).json({ error: 'data.json não encontrado no repo.' });
+    }
+    fs.copyFileSync(localFile, DATA_FILE);
+    console.log('Seed executado: Volume sobrescrito com data.json do repo.');
+    res.json({ ok: true, message: 'Volume atualizado com o data.json do repositório.' });
+  } catch (e) {
+    res.status(500).json({ error: 'Erro ao executar seed: ' + e.message });
+  }
+});
+
 // ===== ADMIN (protegido) =====
 
 app.get('/admin', (req, res) => {
