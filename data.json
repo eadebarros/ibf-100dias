@@ -15,7 +15,7 @@
       "name": "Diagnóstico",
       "period": "Dias 1–30",
       "dates": "8 abr – 7 mai 2026",
-      "status": "active",
+      "status": "done",
       "milestones": [
         {
           "id": "m1-1",
@@ -23,48 +23,53 @@
           "description": "Reunião de apresentação oficial com a equipe IBF.",
           "due_date": "8 abr",
           "status": "done",
-          "content": "Reunião realizada no dia 8 de abril com toda a equipe IBF presente.",
+          "content": "Reunião realizada no dia 8 de abril com toda a equipe IBF. Plano de 100 dias apresentado, papel da Diretoria de Receita explicado e agenda das reuniões individuais definida.",
           "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m1-2",
           "name": "Reuniões individuais com o time",
-          "description": "Paula Z., Joel, Gustavo concluídos. Simone pendente.",
+          "description": "Diagnóstico individual com cada membro da equipe de receita.",
           "due_date": "8–14 abr",
-          "status": "active",
-          "content": "Paula Z., Joel e Gustavo concluídos.",
-          "expected_outcome": "Mapeamento individual de cada membro: perfil, motivações, gaps e posicionamento ideal dentro da nova estrutura.",
+          "status": "done",
+          "content": "Seis reuniões realizadas: Paula Z., Joel, Gustavo, Simone, Mateus e Luiza. Cada conversa foi gravada, transcrita e analisada. Fichas de perfil preenchidas no ClickUp.",
+          "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m1-3",
           "name": "Mapa de perfis do time",
-          "description": "Fichas individuais preenchidas. Decisões de posicionamento.",
+          "description": "Fichas individuais preenchidas. Decisões de posicionamento definidas.",
           "due_date": "14 abr",
-          "status": "active",
-          "content": null,
-          "expected_outcome": "Fichas de perfil preenchidas para cada membro da equipe com decisões de posicionamento documentadas.",
+          "status": "done",
+          "content": "Perfis mapeados e posicionamentos definidos: Gustavo como Especialista de Funis & Performance, Simone como Gerente de Vendas, Paula Z. como Coord. de Conteúdo, Luiza como Estrategista de Conteúdo, Mateus como Analista de Funil (avaliação 30 dias). Joel reposicionado para a Diretoria Estratégica como Gerente de Produto DPP.",
+          "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m1-4",
-          "name": "Comunicados internos enviados",
-          "description": "Comunicado da Sílvia para IBFs Locais + comunicado para IBF Central.",
-          "due_date": "11 abr",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Dois comunicados formais enviados: um da Sílvia para IBFs Locais apresentando a nova estrutura, e um para o IBF Central alinhando expectativas.",
-          "artifact": null
+          "name": "Organograma da Diretoria de Receita",
+          "description": "Estrutura aprovada com pessoas posicionadas e responsabilidades definidas.",
+          "due_date": "14 abr",
+          "status": "done",
+          "content": "Organograma v3 aprovado. Quatro frentes: Marketing (liderado diretamente por Edu), Vendas (Simone), Produto DPP (Joel, Diretoria Estratégica) e Operações (vagas futuras). Apresentado e validado com a Diretoria.",
+          "expected_outcome": null,
+          "artifact": {
+            "type": "Organograma",
+            "name": "Organograma Diretoria de Receita v3",
+            "date": "14 abr 2026",
+            "link": null
+          }
         },
         {
           "id": "m1-5",
           "name": "Diagnóstico da operação comercial",
-          "description": "Pipeline atual auditado. O que existe em marketing, vendas e captação.",
-          "due_date": "30 abr",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Fotografia completa do estado atual: o que existe de processo, ferramenta e esforço em marketing, vendas e captação — com gaps identificados.",
+          "description": "Fotografia completa do estado atual: processos, ferramentas e gaps.",
+          "due_date": "16 abr",
+          "status": "done",
+          "content": "Diagnóstico concluído com base nas reuniões com Gustavo e Simone. Principais achados: funil DPP rodando mas com 0 vendas por falha no processo pós-lead; Simone gerenciando 300 contatos manualmente sem CRM; 4 de 12 escolas com implementação atrasada e em risco de cancelamento; sem relatórios de uso para escolas; rebranding parado no meio; scripts rígidos que não funcionam na prática.",
+          "expected_outcome": null,
           "artifact": null
         }
       ]
@@ -75,56 +80,76 @@
       "name": "Estrutura",
       "period": "Dias 31–60",
       "dates": "8 mai – 6 jun 2026",
-      "status": "upcoming",
+      "status": "active",
       "milestones": [
         {
           "id": "m2-1",
-          "name": "Organograma da Diretoria de Receita",
-          "description": "Pessoas posicionadas. Responsabilidades formalizadas.",
-          "due_date": "Mai 2026",
+          "name": "Reunião geral do time",
+          "description": "Apresentação da estrutura, cargos, metas e rituais para toda a equipe.",
+          "due_date": "7 mai",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Organograma formal aprovado com cada pessoa posicionada, responsabilidades definidas e reportes claros.",
+          "expected_outcome": "Time alinhado: cada pessoa sai sabendo seu cargo oficial, suas metas, a quem reporta e como será cobrada. Rituais de alinhamento semanal definidos.",
           "artifact": null
         },
         {
           "id": "m2-2",
           "name": "CRM implementado",
-          "description": "Pipeline B2B, B2C e captação configurados. Time operando.",
+          "description": "Pipeline B2B e B2C configurados. Time operando na ferramenta.",
           "due_date": "15 mai",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "CRM com três pipelines ativos (B2B, B2C, captação), time treinado e primeiros registros inseridos.",
+          "expected_outcome": "HubSpot com pipelines ativos, 300 contatos da Simone migrados e automações básicas configuradas (confirmação de agendamento, lembrete pré-reunião, follow-up no-show).",
           "artifact": null
         },
         {
           "id": "m2-3",
-          "name": "Sistema de pagamento unificado",
-          "description": "Plataforma centralizada. Repasse automático para locais.",
-          "due_date": "15 mai",
+          "name": "Processos por área documentados",
+          "description": "Fluxos de trabalho definidos para marketing, vendas e pós-venda.",
+          "due_date": "20 mai",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Uma única plataforma de pagamento operando para toda a rede IBF, com repasse automático configurado para IBFs Locais.",
+          "expected_outcome": "Documento com fluxo completo de cada área: calendário editorial, funil de vendas DPP, processo de implementação e onboarding de escolas, processo de renovação.",
           "artifact": null
         },
         {
           "id": "m2-4",
-          "name": "Metas de receita 2026 definidas",
-          "description": "Por produto e cidade. Aprovadas pela Diretoria.",
-          "due_date": "20 mai",
+          "name": "Nova landing page DPP no ar",
+          "description": "Página com vídeo de vendas, pixel integrado e fluxo automatizado.",
+          "due_date": "30 abr",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Metas numéricas por produto e por cidade, validadas e aprovadas formalmente pela Diretoria.",
+          "expected_outcome": "Landing page modelo Bijari substituindo o formulário atual. Com vídeo de vendas, pixel configurado para mensuração correta e fluxo automatizado pós-agendamento.",
           "artifact": null
         },
         {
           "id": "m2-5",
+          "name": "Metas de receita 2026 definidas",
+          "description": "Metas por produto e cidade aprovadas pela Diretoria.",
+          "due_date": "20 mai",
+          "status": "upcoming",
+          "content": null,
+          "expected_outcome": "Metas numéricas formalizadas: DPP B2B (novas escolas + renovação), Programas de Formação (inscrições por cidade e semestre), com revisão mensal definida.",
+          "artifact": null
+        },
+        {
+          "id": "m2-6",
+          "name": "Sistema de pagamento unificado",
+          "description": "Plataforma centralizada com repasse automático para IBFs Locais.",
+          "due_date": "15 mai",
+          "status": "upcoming",
+          "content": null,
+          "expected_outcome": "Uma única plataforma de pagamento operando para toda a rede IBF. Fim das cobranças manuais e descentralizadas.",
+          "artifact": null
+        },
+        {
+          "id": "m2-7",
           "name": "1º ritual com IBFs Locais",
-          "description": "Apresentação, alinhamento e nova dinâmica Central ↔ Locais.",
+          "description": "Apresentação da nova estrutura e dinâmica Central ↔ Locais.",
           "due_date": "30 abr",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Primeiro encontro formal com representantes dos IBFs Locais: apresentação da nova estrutura, alinhamento de expectativas e estabelecimento do novo ritmo de comunicação.",
+          "expected_outcome": "Primeiro encontro formal com representantes dos IBFs Locais: nova estrutura apresentada, expectativas alinhadas e cadência mensal estabelecida.",
           "artifact": null
         }
       ]
@@ -140,11 +165,11 @@
         {
           "id": "m3-1",
           "name": "Funil de vendas rodando",
-          "description": "Leads entrando, follow-up ativo, conversão rastreada.",
+          "description": "Leads entrando, follow-up ativo, conversão rastreada no CRM.",
           "due_date": "Jun–Jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Funil operacional com entradas semanais de leads, follow-up sistematizado e conversão sendo rastreada por produto.",
+          "expected_outcome": "Funil operacional com entradas semanais de leads, follow-up sistematizado e conversão sendo rastreada por produto no dashboard.",
           "artifact": null
         },
         {
@@ -154,7 +179,7 @@
           "due_date": "Jun–Jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Mínimo de 5 escolas com proposta enviada e em negociação ativa no pipeline B2B.",
+          "expected_outcome": "Mínimo de 5 escolas novas com proposta enviada e em negociação ativa no CRM. Parceria com consultoria Zanetti formalizada como canal.",
           "artifact": null
         },
         {
@@ -164,7 +189,7 @@
           "due_date": "Mai 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Novos contratos assinados já no preço reajustado. IBFs Locais comunicados com prazo e critérios de transição.",
+          "expected_outcome": "Novos contratos assinados já no preço reajustado (+23% médio). IBFs Locais comunicados com narrativa de valor e prazo de transição.",
           "artifact": null
         },
         {
@@ -174,7 +199,7 @@
           "due_date": "15 jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Dashboard apresentado à Diretoria mostrando receita real vs. meta, estado do pipeline e taxa de conversão por produto.",
+          "expected_outcome": "Dashboard apresentado à Diretoria com receita real vs. meta, estado do pipeline, taxa de conversão por produto e próximos passos.",
           "artifact": null
         }
       ]
@@ -182,20 +207,32 @@
   ],
   "updates": [
     {
-      "date": "8 abr 2026",
-      "text": "Kickoff oficial com o time IBF realizado."
+      "date": "16 abr 2026",
+      "text": "Fase 1 concluída. Diagnóstico completo com 6 reuniões individuais realizadas e analisadas."
+    },
+    {
+      "date": "16 abr 2026",
+      "text": "Organograma v3 aprovado. Estrutura da Diretoria de Receita definida com posicionamento oficial de cada pessoa."
+    },
+    {
+      "date": "16 abr 2026",
+      "text": "Diagnóstico comercial concluído: funil DPP mapeado, gaps identificados, 4 escolas em risco de cancelamento endereçadas."
+    },
+    {
+      "date": "14 abr 2026",
+      "text": "Reunião com Simone: processo de vendas mapeado. 300 contatos gerenciados manualmente. CRM como prioridade urgente da Fase 2."
+    },
+    {
+      "date": "10 abr 2026",
+      "text": "Reunião com Gustavo: funil DPP analisado. R$1.200 investidos geraram 5 reuniões e 0 vendas — problema está no processo, não no tráfego."
     },
     {
       "date": "8 abr 2026",
-      "text": "Reuniões individuais iniciadas: Paula Z., Joel e Gustavo concluídas."
+      "text": "Kickoff oficial com o time IBF realizado. Plano de 100 dias apresentado."
     },
     {
       "date": "8 abr 2026",
-      "text": "Fichas de perfil do time abertas no ClickUp."
-    },
-    {
-      "date": "8 abr 2026",
-      "text": "Organograma da Diretoria de Receita em construção."
+      "text": "Reuniões individuais iniciadas: Paula Z., Joel, Gustavo, Mateus e Luiza concluídas."
     }
   ]
 }
