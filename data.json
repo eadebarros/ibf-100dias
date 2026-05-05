@@ -56,7 +56,7 @@
           "content": "Organograma v3 aprovado. Quatro frentes: Marketing (liderado diretamente por Edu), Vendas (Simone), Produto DPP (Joel, Diretoria Estratégica) e Operações (vagas futuras). Apresentado e validado com a Diretoria.",
           "expected_outcome": null,
           "artifact": {
-            "type": "Organograma",
+            "type": "ORGANOGRAMA",
             "name": "Organograma Diretoria de Receita v3",
             "date": "14 abr 2026",
             "link": null
@@ -83,6 +83,16 @@
       "status": "active",
       "milestones": [
         {
+          "id": "m2-0",
+          "name": "Rituais de time iniciados",
+          "description": "Planejamento semanal e status de time em operação desde 23 abr.",
+          "due_date": "23 abr",
+          "status": "done",
+          "content": "Rituais de comunicação e alinhamento de time iniciados na semana de 23 de abril — antes do previsto na Fase 2:\n\n- **Planejamento semanal** — toda segunda-feira\n- **Status semanal** — acompanhamento de entregas e bloqueios\n\nRitmo estabelecido antecipadamente para suportar a transição para a Fase 2.",
+          "expected_outcome": null,
+          "artifact": null
+        },
+        {
           "id": "m2-1",
           "name": "Reunião geral do time",
           "description": "Apresentação da estrutura, cargos, metas e rituais para toda a equipe.",
@@ -94,16 +104,51 @@
         },
         {
           "id": "m2-2",
-          "name": "CRM implementado",
-          "description": "Pipeline B2B e B2C configurados. Time operando na ferramenta.",
-          "due_date": "15 mai",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "HubSpot com pipelines ativos, 300 contatos da Simone migrados e automações básicas configuradas (confirmação de agendamento, lembrete pré-reunião, follow-up no-show).",
+          "name": "Stack de ferramentas definida",
+          "description": "Ferramentas por área selecionadas, custos mapeados e descontos de ONG investigados.",
+          "due_date": "5 mai",
+          "status": "done",
+          "content": "Stack completa definida após análise de custos, descontos para ONG e adequação ao perfil do IBF:\n\n## E-mail corporativo\n**Google Workspace Starter** — R$ 40,90/usuário/mês · domínio portalibf.org.br · já contratado\n\n## Comunicação interna\n**Slack** — comunicador oficial. Programa de ONG: gratuito até 250 membros (via TechSoup Brasil). Aplicação pendente.\n\n## Gestão de tarefas\n**ClickUp** — workspace IDK Brasil com membros IBF como guests. Sem custo adicional.\n\n## CRM\n**RD Station CRM** — gratuito. Pipeline B2B (escolas DPP) e B2C (famílias/cursos). Interface em PT-BR.\n\n## Automação de marketing\n**Brevo** — gratuito (plano free: contatos ilimitados, 300 emails/dia). A confirmar com Gustavo.\n\n## Pagamento centralizado\n**Asaas** — sem mensalidade. Split nativo para IBFs Locais sem necessidade de desenvolvimento.\n\n## Agendamento\n**Calendly** — existente · R$ 67/mês\n\n## Tráfego pago\n**Meta Ads** — verba variável conforme plano de mídia",
+          "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m2-3",
+          "name": "Orçamento 2026 apresentado à Diretoria",
+          "description": "Orçamento completo de folha, ferramentas, mídia e investimentos. Apresentação em 6 mai 2026.",
+          "due_date": "6 mai",
+          "status": "active",
+          "content": "Orçamento 2026 estruturado em quatro blocos e enviado à Diretoria em 5 de maio para avaliação prévia à reunião de 6 de maio.\n\n## Blocos do orçamento\n\n**01 · Folha** — equipe atual + linhas abertas para novas contratações (Edu, Mateus, Luiza, SDR, Operações)\n\n**02 · Ferramentas** — stack completa mapeada com custos mensais e anuais\n\n**03 · Mídia Paga**\n- DPP B2B (Meta Ads): R$ 2.500/mês · abr–dez · CPA projetado R$ 135\n- IBF Local Awareness (Meta Ads): R$ 1.500/mês · 2 flights/ano (mai–jun + set–out) · 3 cidades\n\n**04 · Investimentos Plano 100 Dias** — ferramentas, eventos, materiais e contingência",
+          "expected_outcome": "Aprovação do orçamento pela Diretoria na reunião de 6 mai 2026.",
+          "artifact": {
+            "type": "DOCUMENTO",
+            "name": "IBF_Orcamento_2026_v2.xlsx",
+            "date": "5 mai 2026",
+            "link": null
+          }
+        },
+        {
+          "id": "m2-4",
+          "name": "CRM implementado",
+          "description": "RD Station CRM configurado. Pipelines B2B e B2C operando. 300 contatos migrados.",
+          "due_date": "15 mai",
+          "status": "upcoming",
+          "content": null,
+          "expected_outcome": "RD Station CRM com pipelines ativos — B2B (escolas DPP) e B2C (famílias/cursos). 300 contatos da Simone migrados. Automações básicas configuradas: confirmação de agendamento, lembrete pré-reunião, follow-up no-show.",
+          "artifact": null
+        },
+        {
+          "id": "m2-5",
+          "name": "Nova landing page DPP no ar",
+          "description": "Página com vídeo de vendas, pixel integrado e fluxo automatizado.",
+          "due_date": "30 mai",
+          "status": "upcoming",
+          "content": null,
+          "expected_outcome": "Landing page modelo Bijari substituindo o formulário atual. Com vídeo de vendas, pixel configurado para mensuração correta e fluxo automatizado pós-agendamento.",
+          "artifact": null
+        },
+        {
+          "id": "m2-6",
           "name": "Processos por área documentados",
           "description": "Fluxos de trabalho definidos para marketing, vendas e pós-venda.",
           "due_date": "20 mai",
@@ -113,17 +158,7 @@
           "artifact": null
         },
         {
-          "id": "m2-4",
-          "name": "Nova landing page DPP no ar",
-          "description": "Página com vídeo de vendas, pixel integrado e fluxo automatizado.",
-          "due_date": "30 abr",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Landing page modelo Bijari substituindo o formulário atual. Com vídeo de vendas, pixel configurado para mensuração correta e fluxo automatizado pós-agendamento.",
-          "artifact": null
-        },
-        {
-          "id": "m2-5",
+          "id": "m2-7",
           "name": "Metas de receita 2026 definidas",
           "description": "Metas por produto e cidade aprovadas pela Diretoria.",
           "due_date": "20 mai",
@@ -133,20 +168,20 @@
           "artifact": null
         },
         {
-          "id": "m2-6",
+          "id": "m2-8",
           "name": "Sistema de pagamento unificado",
-          "description": "Plataforma centralizada com repasse automático para IBFs Locais.",
+          "description": "Asaas configurado. Repasse automático para IBFs Locais operando.",
           "due_date": "15 mai",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Uma única plataforma de pagamento operando para toda a rede IBF. Fim das cobranças manuais e descentralizadas.",
+          "expected_outcome": "Asaas operando para toda a rede IBF. Fim das cobranças manuais e descentralizadas. Split automático para IBFs Locais configurado no painel sem necessidade de desenvolvimento.",
           "artifact": null
         },
         {
-          "id": "m2-7",
+          "id": "m2-9",
           "name": "1º ritual com IBFs Locais",
           "description": "Apresentação da nova estrutura e dinâmica Central ↔ Locais.",
-          "due_date": "30 abr",
+          "due_date": "30 mai",
           "status": "upcoming",
           "content": null,
           "expected_outcome": "Primeiro encontro formal com representantes dos IBFs Locais: nova estrutura apresentada, expectativas alinhadas e cadência mensal estabelecida.",
@@ -206,6 +241,22 @@
     }
   ],
   "updates": [
+    {
+      "date": "5 mai 2026",
+      "text": "Orçamento 2026 enviado à Diretoria para avaliação. Apresentação agendada para 6 mai. Inclui folha, ferramentas, plano de mídia (DPP B2B + IBF Local) e investimentos do plano de 100 dias."
+    },
+    {
+      "date": "5 mai 2026",
+      "text": "Stack de ferramentas fechada: Google Workspace (contratado), Slack (comunicador oficial), RD Station CRM, Asaas e Brevo definidos."
+    },
+    {
+      "date": "5 mai 2026",
+      "text": "Plano de mídia definido com Gustavo: Meta Ads DPP B2B R$ 2.500/mês abr–dez · IBF Local Awareness R$ 1.500/mês em 2 flights anuais (mai–jun e set–out)."
+    },
+    {
+      "date": "23 abr 2026",
+      "text": "Rituais de time iniciados antes do previsto: planejamento semanal e status semanal em operação."
+    },
     {
       "date": "16 abr 2026",
       "text": "Fase 1 concluída. Diagnóstico completo com 6 reuniões individuais realizadas e analisadas."
