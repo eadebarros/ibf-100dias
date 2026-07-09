@@ -108,7 +108,7 @@
           "description": "Ferramentas contratadas e time em operação.",
           "due_date": "19 mai",
           "status": "done",
-          "content": "Stack completa implantada:\n\n## Comunicação interna\n**Slack** — workspace criado e oficializado. Todo o time presente.\n\n## CRM\n**ClickUp CRM** — Simone operando. Todas as vendas sendo tratadas por lá.\n\n## E-mail corporativo\n**Google Workspace Starter** — domínio portalibf.org.br · contratado.\n\n## Pagamento centralizado\n**Asaas** — sem mensalidade. Split nativo para IBFs Locais.\n\n## Agendamento\n**Calendly** — existente · R$ 67/mês\n\n## Tráfego pago\n**Meta Ads** — pixel configurado. Plano de mídia pendente de ir ao ar.",
+          "content": "Stack completa implantada:\n\n## Comunicação interna\n**Slack** — workspace criado e oficializado. Todo o time presente.\n\n## CRM\n**ClickUp CRM** — Simone operando. Todas as vendas sendo tratadas por lá.\n\n## E-mail corporativo\n**Google Workspace Starter** — domínio portalibf.org.br · contratado.\n\n## Pagamento centralizado\n**Reutilizado sistema existente** — operacional para toda a rede IBF.\n\n## Agendamento\n**Calendly** — existente · R$ 67/mês\n\n## Tráfego pago\n**Meta Ads** — pixel e GTM configurados. Operação aguarda novo gestor de mídia.",
           "expected_outcome": null,
           "artifact": null
         },
@@ -118,7 +118,7 @@
           "description": "Orçamento completo aprovado pela Diretoria. Operação autorizada.",
           "due_date": "6 mai",
           "status": "done",
-          "content": "Orçamento 2026 apresentado e aprovado pela Diretoria em 6 de maio. Operação autorizada.\n\n## Blocos aprovados\n\n**01 · Folha** — equipe atual + linhas abertas para novas contratações\n\n**02 · Ferramentas** — stack completa mapeada com custos mensais e anuais\n\n**03 · Mídia Paga**\n- DPP B2B (Meta Ads): R$ 2.500/mês · abr–dez · CPA projetado R$ 135\n- IBF Local Awareness (Meta Ads): R$ 1.500/mês · 2 flights/ano (mai–jun + set–out) · 3 cidades\n\n**04 · Investimentos Plano 100 Dias** — ferramentas, eventos, materiais e contingência",
+          "content": "Orçamento 2026 apresentado e aprovado pela Diretoria em 6 de maio. Operação autorizada.\n\n## Blocos aprovados\n\n**01 · Folha** — equipe atual + linhas abertas para novas contratações\n\n**02 · Ferramentas** — stack completa mapeada com custos mensais e anuais\n\n**03 · Mídia Paga**\n- DPP B2B (Meta Ads): R$ 2.500/mês · abr–dez · CPA projetado R$ 135\n- IBF Local Awareness (Meta Ads): R$ 1.500/mês · 2 flights/ano\n\n**04 · Investimentos Plano 100 Dias** — ferramentas, eventos, materiais e contingência",
           "expected_outcome": null,
           "artifact": {
             "type": "DOCUMENTO",
@@ -129,26 +129,16 @@
         },
         {
           "id": "m2-4",
-          "name": "SDR contratada",
-          "description": "SDR contratada para apoiar Vendas com leads do IBF Local.",
-          "due_date": "Mai 2026",
+          "name": "Leticia nomeada Head de Produtos",
+          "description": "Nova liderança de Produtos incorporada à estrutura da Diretoria de Receita.",
+          "due_date": "Jun 2026",
           "status": "done",
-          "content": "SDR contratada e incorporada à equipe de Vendas. Atuará no contato e qualificação de leads gerados pelos IBFs Locais, apoiando Simone na gestão do pipeline.",
+          "content": "Leticia nomeada Head de Produtos — adição não prevista no organograma original. Responsável por liderar a definição de portfólio, preços e oferta dos produtos IBF.",
           "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m2-5",
-          "name": "Leticia nomeada Head de Produtos",
-          "description": "Nova liderança de Produtos incorporada à estrutura da Diretoria de Receita.",
-          "due_date": "Jun 2026",
-          "status": "done",
-          "content": "Leticia nomeada Head de Produtos — adição não prevista no organograma original. Responsável por liderar a reunião de produtos (portfólio, preços e oferta) e pela visão estratégica dos produtos IBF.",
-          "expected_outcome": null,
-          "artifact": null
-        },
-        {
-          "id": "m2-6",
           "name": "Desenvolvedor contratado",
           "description": "Desenvolvedor contratado para substituir Denise Rezende nas demandas técnicas.",
           "due_date": "Jun 2026",
@@ -158,7 +148,7 @@
           "artifact": null
         },
         {
-          "id": "m2-7",
+          "id": "m2-6",
           "name": "GTM instalado e CTAs corrigidos",
           "description": "Google Tag Manager instalado no site. CTAs do site corrigidos.",
           "due_date": "Jun 2026",
@@ -168,7 +158,7 @@
           "artifact": null
         },
         {
-          "id": "m2-8",
+          "id": "m2-7",
           "name": "CRM em operação",
           "description": "ClickUp CRM com Simone operando. Todas as vendas tratadas por lá.",
           "due_date": "Jun 2026",
@@ -178,83 +168,83 @@
           "artifact": null
         },
         {
-          "id": "m2-9",
-          "name": "Plano de mídia no ar",
-          "description": "Campanhas Meta Ads DPP B2B e IBF Local Awareness subindo.",
+          "id": "m2-8",
+          "name": "Sistema de pagamento unificado",
+          "description": "Sistema existente reutilizado. Operacional para toda a rede IBF.",
           "due_date": "Jun 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Campanha DPP B2B (R$ 2.500/mês) e IBF Local Awareness (R$ 1.500/mês · flight mai–jun) ativos. Criativos aprovados e pixel rastreando corretamente via GTM.",
+          "status": "done",
+          "content": "Decisão tomada de reutilizar plataforma de pagamento já existente no IBF, evitando migração desnecessária. Sistema operacional para toda a rede.",
+          "expected_outcome": null,
+          "artifact": null
+        },
+        {
+          "id": "m2-9",
+          "name": "Metas de receita 2026 definidas",
+          "description": "Metas por produto e cidade definidas.",
+          "due_date": "Jun 2026",
+          "status": "done",
+          "content": "Metas de receita 2026 definidas por produto e área. Base estabelecida para acompanhamento no dashboard de receita da Fase 3.",
+          "expected_outcome": null,
           "artifact": null
         },
         {
           "id": "m2-10",
-          "name": "Reunião de produtos",
-          "description": "Definir portfólio, preços e narrativa de oferta. Liderada por Leticia.",
-          "due_date": "Jun 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Lista oficial de produtos, tabela de preços aprovada e narrativa de oferta por produto — base para treinamento de vendas e campanhas de aquisição.",
+          "name": "Treinamento de vendas",
+          "description": "Simone em treinamento com portfólio de produtos. Já gerando resultados.",
+          "due_date": "Jul 2026",
+          "status": "active",
+          "content": "Treinamento de Simone em andamento com o portfólio de produtos IBF. Processo já gerando frutos comerciais.",
+          "expected_outcome": "Simone e futura SDR operando com scripts completos, portfólio dominado e fluxo CRM alinhado com a oferta oficial.",
           "artifact": null
         },
         {
           "id": "m2-11",
-          "name": "Treinamento de vendas com portfólio",
-          "description": "Treinar Simone e SDR com produtos, preços e scripts após reunião de produtos.",
-          "due_date": "Jun 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Simone e SDR operando com scripts atualizados, portfólio dominado e fluxo CRM alinhado com a oferta oficial.",
+          "name": "Reunião de produtos",
+          "description": "Definição de portfólio, preços e narrativa de oferta. Liderada por Leticia.",
+          "due_date": "Jul 2026",
+          "status": "active",
+          "content": "Várias reuniões realizadas. Chegando à conclusão — estimativa de 60% concluído.",
+          "expected_outcome": "Lista oficial de produtos, tabela de preços aprovada e narrativa de oferta por produto.",
           "artifact": null
         },
         {
           "id": "m2-12",
-          "name": "Landing page de obrigado DPP",
-          "description": "Página pós-agendamento com confirmação, próximos passos e pixel de conversão.",
-          "due_date": "Jun 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Landing page no ar com confirmação de agendamento, evento de conversão disparando no GTM e fluxo automatizado pós-agendamento ativo.",
+          "name": "Gestor de mídia contratado",
+          "description": "Novo gestor de mídia em processo de assinatura de contrato.",
+          "due_date": "Jul 2026",
+          "status": "active",
+          "content": "Gestor de mídia anterior desligado. Substituto identificado e em fase de assinatura de contrato. Plano de mídia e criativos prontos — aguardando operador para subir as campanhas.",
+          "expected_outcome": "Contrato assinado e campanhas Meta Ads no ar na semana seguinte à contratação.",
           "artifact": null
         },
         {
           "id": "m2-13",
-          "name": "Campanha de aquisição de IBFs Locais",
-          "description": "Campanha direcionada a novos representantes interessados em abrir um IBF Local.",
+          "name": "SDR contratada",
+          "description": "Processo seletivo reaberto após desistência da candidata anterior.",
           "due_date": "Jul 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Campanha ativa com público, oferta e landing page definidos. Leads de novos IBFs Locais entrando no pipeline.",
+          "status": "active",
+          "content": "Primeira candidata não avançou. Nova candidata identificada — contratação prevista para a próxima semana.",
+          "expected_outcome": "SDR contratada e integrada à equipe de Vendas, apoiando Simone no pipeline de leads do IBF Local.",
           "artifact": null
         },
         {
           "id": "m2-14",
-          "name": "Sistema de pagamento unificado",
-          "description": "Asaas configurado. Repasse automático para IBFs Locais operando.",
-          "due_date": "Jun 2026",
+          "name": "Plano de mídia no ar",
+          "description": "Campanhas Meta Ads prontas. Aguardando novo gestor para operar.",
+          "due_date": "Jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Asaas operando para toda a rede IBF. Fim das cobranças manuais. Split automático para IBFs Locais configurado.",
+          "expected_outcome": "Campanha DPP B2B (R$ 2.500/mês) e IBF Local Awareness (R$ 1.500/mês) ativas. Criativos aprovados rodando com gestor contratado.",
           "artifact": null
         },
         {
           "id": "m2-15",
-          "name": "Metas de receita 2026 definidas",
-          "description": "Metas por produto e cidade aprovadas pela Diretoria.",
-          "due_date": "Jun 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Metas numéricas formalizadas por produto e cidade, aprovadas pela Diretoria, com revisão mensal definida.",
-          "artifact": null
-        },
-        {
-          "id": "m2-16",
-          "name": "1º ritual com IBFs Locais",
-          "description": "Cadência mensal estabelecida com os ~60 representantes locais.",
+          "name": "Ritual mensal com IBFs Locais",
+          "description": "Cadência mensal com ~60 representantes. Aguardando agenda da Eliane.",
           "due_date": "Jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Cadência mensal estabelecida. Primeiro encontro realizado com nova estrutura apresentada e próxima reunião agendada.",
+          "expected_outcome": "Cadência mensal estabelecida com os IBFs Locais. Reunião de ritual realizada e próximo encontro agendado.",
           "artifact": null
         }
       ]
@@ -265,23 +255,23 @@
       "name": "Execução",
       "period": "Dias 61–100",
       "dates": "7 jun – 17 jul 2026",
-      "status": "upcoming",
+      "status": "active",
       "milestones": [
         {
           "id": "m3-1",
           "name": "Funil de vendas rodando",
           "description": "Leads entrando, follow-up ativo, conversão rastreada no CRM.",
           "due_date": "Jun–Jul 2026",
-          "status": "upcoming",
-          "content": null,
-          "expected_outcome": "Funil operacional com entradas semanais de leads, follow-up sistematizado e conversão rastreada por produto no dashboard.",
+          "status": "active",
+          "content": "Simone operando no CRM com treinamento em andamento. Pipeline ativo e gerando resultados.",
+          "expected_outcome": "Funil com entradas semanais de leads, follow-up sistematizado e conversão rastreada por produto no dashboard.",
           "artifact": null
         },
         {
           "id": "m3-2",
           "name": "DPP B2B: 5+ novas escolas em negociação",
           "description": "Pipeline ativo com escolas. Propostas enviadas.",
-          "due_date": "Jun–Jul 2026",
+          "due_date": "Jul 2026",
           "status": "upcoming",
           "content": null,
           "expected_outcome": "Mínimo de 5 escolas novas com proposta enviada e em negociação ativa no CRM.",
@@ -294,7 +284,7 @@
           "due_date": "Jul 2026",
           "status": "upcoming",
           "content": null,
-          "expected_outcome": "Novos contratos assinados já no preço reajustado (+23% médio). IBFs Locais comunicados com narrativa de valor e prazo de transição.",
+          "expected_outcome": "Novos contratos assinados já no preço reajustado. IBFs Locais comunicados com narrativa de valor e prazo de transição.",
           "artifact": null
         },
         {
@@ -312,28 +302,40 @@
   ],
   "updates": [
     {
+      "date": "8 jul 2026",
+      "text": "Gestor de mídia anterior desligado. Substituto em fase de assinatura. Plano de mídia e criativos prontos para subir."
+    },
+    {
+      "date": "8 jul 2026",
+      "text": "Reunião de produtos em fase final — ~60% concluída. Leticia liderando o processo."
+    },
+    {
+      "date": "8 jul 2026",
+      "text": "Treinamento de Simone em andamento e já gerando resultados comerciais."
+    },
+    {
+      "date": "8 jul 2026",
+      "text": "SDR: processo reaberto após desistência. Nova candidata identificada — contratação prevista para a próxima semana."
+    },
+    {
+      "date": "8 jul 2026",
+      "text": "Sistema de pagamento: decisão de reutilizar plataforma existente. Operacional para toda a rede."
+    },
+    {
+      "date": "8 jul 2026",
+      "text": "Metas de receita 2026 definidas por produto e área."
+    },
+    {
       "date": "2 jun 2026",
       "text": "GTM instalado no site portalibf.org.br. CTAs corrigidos. Base de tracking pronta para as campanhas."
     },
     {
       "date": "2 jun 2026",
-      "text": "Desenvolvedor contratado. Substituição de Denise Rezende nas demandas técnicas do IBF."
-    },
-    {
-      "date": "2 jun 2026",
-      "text": "Leticia nomeada Head de Produtos. Nova liderança incorporada à estrutura da Diretoria de Receita."
+      "text": "Desenvolvedor contratado. Leticia nomeada Head de Produtos."
     },
     {
       "date": "2 jun 2026",
       "text": "Simone operando no ClickUp CRM. Todas as vendas sendo gerenciadas pela plataforma."
-    },
-    {
-      "date": "19 mai 2026",
-      "text": "SDR contratada para apoiar área de Vendas com leads do IBF Local."
-    },
-    {
-      "date": "19 mai 2026",
-      "text": "Slack oficial no ar. Toda a equipe interna presente."
     },
     {
       "date": "6 mai 2026",
@@ -350,18 +352,6 @@
     {
       "date": "16 abr 2026",
       "text": "Fase 1 concluída. Diagnóstico completo com 6 reuniões individuais realizadas e analisadas."
-    },
-    {
-      "date": "16 abr 2026",
-      "text": "Organograma v3 aprovado. Estrutura da Diretoria de Receita definida com posicionamento oficial de cada pessoa."
-    },
-    {
-      "date": "16 abr 2026",
-      "text": "Diagnóstico comercial concluído: funil DPP mapeado, gaps identificados, 4 escolas em risco de cancelamento endereçadas."
-    },
-    {
-      "date": "10 abr 2026",
-      "text": "Reunião com Gustavo: funil DPP analisado. R$1.200 investidos geraram 5 reuniões e 0 vendas — problema está no processo, não no tráfego."
     },
     {
       "date": "8 abr 2026",
